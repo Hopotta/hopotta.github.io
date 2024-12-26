@@ -130,8 +130,9 @@
 
         // Extract metadata from the post
         const title = doc.querySelector('meta[name="title"]').content;
-        const content = doc.body.textContent.trim(); // Get body text
-        const excerpt = content.length > 200 ? content.substring(0, 200) + '...' : content;
+        const contentElement = doc.querySelector('main'); // Locate the main content
+        const content = contentElement ? contentElement.textContent.trim() : ''; // Extract only the main content
+        const excerpt = content ? (content.length > 200 ? content.substring(0, 200) + '...' : content) : 'No content available.';
         const author = doc.querySelector('meta[name="author"]').content;
         const date = doc.querySelector('meta[name="date"]').content;
         const readingTime = doc.querySelector('meta[name="reading-time"]').content;

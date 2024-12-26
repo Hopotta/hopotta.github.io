@@ -19,19 +19,22 @@
       justify-content: space-between;
       align-items: center;
       background-color: #f9f9f9;
-      padding: 1rem 2rem;
+      padding: 1.5rem 2rem;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     header h1 {
       margin: 0;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: #333;
+      flex: 0.382; /* 黄金比例 */
+      text-align: left;
     }
 
     nav {
+      flex: 0.618; /* 黄金比例 */
       display: flex;
-      gap: 1.5rem;
+      justify-content: space-evenly;
     }
 
     nav a {
@@ -62,7 +65,7 @@
   <header>
     <h1>Hopotta's Log</h1>
     <nav>
-      <a href="posts/">Posts</a>
+      <a href="posts/posts1.html">Posts</a>
       <a href="codespace/">CodeSpace</a>
       <a href="paradox/">Paradox</a>
     </nav>

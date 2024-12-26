@@ -3,8 +3,12 @@ body {
   font-family: Arial, sans-serif;
   background-color: #ffffff;
   color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+/* Header styles */
 header {
   display: flex;
   justify-content: space-between;
@@ -21,8 +25,7 @@ header h1 {
 
 nav {
   display: flex;
-  justify-content: space-between;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 nav a {
@@ -30,14 +33,28 @@ nav a {
   color: #0078d7;
 }
 
+/* Main content container */
 main {
+  flex: 1;
   padding: 2rem 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
+/* Post container and cards */
 #post-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: 1fr; /* Single-column for smaller screens */
   gap: 1.5rem;
+  max-width: 800px; /* Align with header width */
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  #post-container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Two-column layout */
+  }
 }
 
 .post-card {
@@ -53,7 +70,26 @@ main {
   transform: translateY(-5px);
 }
 
+.post-card h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.4rem;
+}
+
+.post-card p {
+  margin: 0 0 1rem 0;
+  color: #666;
+}
+
 .post-meta {
   font-size: 0.9rem;
   color: #666;
+}
+
+/* Footer styles */
+footer {
+  background-color: #f9f9f9;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto; /* Pushes the footer to the bottom */
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }

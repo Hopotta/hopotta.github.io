@@ -4,12 +4,108 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hopotta's Log</title>
-  <link rel="stylesheet" href="./assets/style.css">
+  <style>
+    /* General Reset */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header Styles */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f9f9f9;
+      padding: 1.5rem 10%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0078d7;
+    }
+
+    /* Main Content Styles */
+    main {
+      flex: 1;
+      padding: 2rem 10%;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    #post-container {
+      display: grid;
+      grid-template-columns: 1fr; /* Single-column layout */
+      gap: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto; /* Center align container */
+    }
+
+    @media (min-width: 768px) {
+      #post-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Multi-column layout */
+      }
+    }
+
+    .post-card {
+      background-color: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .post-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .post-card h2 {
+      margin: 0 0 1rem 0;
+      font-size: 1.4rem;
+    }
+
+    .post-card p {
+      margin: 0 0 1rem 0;
+      color: #666;
+    }
+
+    .post-meta {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Footer Styles */
+    footer {
+      background-color: #f9f9f9;
+      text-align: center;
+      padding: 1rem;
+      margin-top: auto; /* Push footer to the bottom */
+      box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
   <script>
     async function loadPosts() {
       const posts = [
         { path: './posts/posts1.html' }
-        // to be continued
+        // Add more post paths here
       ];
 
       const container = document.getElementById('post-container');
@@ -18,11 +114,15 @@
         const text = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(text, 'text/html');
+
+        // Extract metadata from the post
         const title = doc.querySelector('meta[name="title"]').content;
         const author = doc.querySelector('meta[name="author"]').content;
         const date = doc.querySelector('meta[name="date"]').content;
         const readingTime = doc.querySelector('meta[name="reading-time"]').content;
         const description = doc.querySelector('meta[name="description"]').content;
+
+        // Create post card
         const card = document.createElement('div');
         card.className = 'post-card';
         card.innerHTML = `
@@ -39,6 +139,7 @@
       }
     }
 
+    // Load posts on window load
     window.onload = loadPosts;
   </script>
 </head>
@@ -54,7 +155,7 @@
 
   <main>
     <div id="post-container">
-      <!-- to be continued -->
+      <!-- Dynamic post cards will be inserted here -->
     </div>
   </main>
 

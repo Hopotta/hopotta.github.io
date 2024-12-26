@@ -132,7 +132,7 @@
         const title = doc.querySelector('meta[name="title"]').content;
         const contentElement = doc.querySelector('main'); // Locate the main content
         const content = contentElement ? contentElement.textContent.trim() : ''; // Extract only the main content
-        const excerpt = content ? (content.length > 200 ? content.substring(0, 200) + '...' : content) : 'No content available.';
+        const excerpt = content ? (content.length > 200 ? content.substring(0, 200).trim() + '...' : content.trim()) : 'No content available.';
         const author = doc.querySelector('meta[name="author"]').content;
         const date = doc.querySelector('meta[name="date"]').content;
         const readingTime = doc.querySelector('meta[name="reading-time"]').content;

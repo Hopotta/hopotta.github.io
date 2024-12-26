@@ -54,8 +54,7 @@
 
     #welcome-message {
       font-size: 1rem;
-      margin: 0 0 1.5rem 0;  /* Align left and add bottom margin */
-      text-align: left;  /* Align text left */
+      margin-bottom: 1.5rem;
     }
 
     #post-container {
@@ -131,7 +130,7 @@
 
         // Extract metadata from the post
         const title = doc.querySelector('meta[name="title"]').content;
-        const content = doc.querySelector('div.content').textContent.trim(); // Use actual post content
+        const content = doc.body.textContent.trim(); // Get body text
         const excerpt = content.length > 200 ? content.substring(0, 200) + '...' : content;
         const author = doc.querySelector('meta[name="author"]').content;
         const date = doc.querySelector('meta[name="date"]').content;
@@ -140,7 +139,7 @@
         // Create post card
         const card = document.createElement('div');
         card.className = 'post-card';
-        card.innerHTML = `
+        card.innerHTML = 
           <h2>${title}</h2>
           <p>${excerpt}</p>
           <div class="post-meta">
@@ -148,7 +147,7 @@
             <span>Estimated Reading Time: ${readingTime}</span> | 
             <span>Author: ${author}</span>
           </div>
-        `;
+        ;
         card.onclick = () => window.location.href = post.path;
         container.appendChild(card);
       }

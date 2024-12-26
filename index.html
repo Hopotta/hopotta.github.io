@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hopotta's Log</title>
   <style>
+    /* General Reset */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -15,23 +16,26 @@
       min-height: 100vh;
     }
 
+    /* Header Styles */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background-color: #f9f9f9;
-      padding: 1.5rem 10%;
+      padding: 1rem 5%;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      flex-wrap: wrap; /* Prevent overflow on small screens */
     }
 
     header h1 {
       margin: 0;
-      font-size: 1.8rem;
+      font-size: 1.5rem; /* Reduced font size */
     }
 
     nav {
       display: flex;
-      gap: 1.5rem;
+      gap: 1rem;
+      flex-wrap: wrap; /* Prevent overflow */
     }
 
     nav a {
@@ -39,19 +43,18 @@
       color: #0078d7;
     }
 
+    /* Main Content Styles */
     main {
       flex: 1;
       padding: 2rem 10%;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1rem;
     }
 
     #welcome-message {
-      font-size: 1.2rem;
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 2rem;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     #post-container {
@@ -59,7 +62,7 @@
       grid-template-columns: 1fr;
       gap: 1.5rem;
       max-width: 800px;
-      margin: 0 auto;
+      margin: 0 auto; /* Center align container */
     }
 
     @media (min-width: 768px) {
@@ -83,7 +86,7 @@
 
     .post-card h2 {
       margin: 0 0 1rem 0;
-      font-size: 1.4rem;
+      font-size: 1.2rem; /* Slightly smaller title */
     }
 
     .post-card p {
@@ -101,6 +104,7 @@
       color: #666;
     }
 
+    /* Footer Styles */
     footer {
       background-color: #f9f9f9;
       text-align: center;
@@ -112,7 +116,8 @@
   <script>
     async function loadPosts() {
       const posts = [
-        { path: './posts/posts1.html' }
+        { path: './posts/posts1.html' },
+        { path: './posts/posts2.html' }
         // Add more post paths here
       ];
 
@@ -122,17 +127,21 @@
         const text = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(text, 'text/html');
+
+        // Extract metadata from the post
         const title = doc.querySelector('meta[name="title"]').content;
+        const content = doc.body.textContent.trim(); // Get body text
+        const excerpt = content.length > 200 ? content.substring(0, 200) + '...' : content;
         const author = doc.querySelector('meta[name="author"]').content;
         const date = doc.querySelector('meta[name="date"]').content;
         const readingTime = doc.querySelector('meta[name="reading-time"]').content;
-        const description = doc.querySelector('meta[name="description"]').content;
 
+        // Create post card
         const card = document.createElement('div');
         card.className = 'post-card';
         card.innerHTML = `
           <h2>${title}</h2>
-          <p>${description}</p>
+          <p>${excerpt}</p>
           <div class="post-meta">
             <span>Date: ${date}</span> | 
             <span>Estimated Reading Time: ${readingTime}</span> | 
@@ -159,11 +168,12 @@
   </header>
 
   <main>
-    <div id="welcome-message">Welcome to Hopotta's Log! Explore the latest insights and articles.</div>
+    <!-- Welcome Message -->
+    <div id="welcome-message">Welcome! Dive into insightful posts and updates.</div>
 
     <!-- Post Cards -->
     <div id="post-container">
-      <!-- to be continued -->
+      <!-- Dynamic post cards will be inserted here -->
     </div>
   </main>
 

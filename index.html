@@ -3,48 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to My Portfolio</title>
+  <title>Hopotta's Log</title>
+  <link rel="stylesheet" href="assets/style.css">
   <style>
     body {
-      font-family: Times New Roman;
       margin: 0;
       padding: 0;
-      background-color: #f9f9f9;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
       color: #333;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f9f9f9;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #333;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0078d7;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 2rem;
       text-align: center;
     }
-    header {
-      background-color: #0078d7;
-      color: white;
-      padding: 1.5em 0;
-    }
-    section {
-      padding: 2em;
-    }
-    a {
-      color: #0078d7;
-      text-decoration: none;
-    }
+
     footer {
-      background-color: #333;
-      color: white;
-      padding: 1em 0;
+      text-align: center;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      margin-top: 2rem;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Hi there 👋, I'm Hopotta</h1>
-    <p>College student majoring in Information Management & Information Systems</p>
+    <h1>Hopotta's Log</h1>
+    <nav>
+      <a href="posts/">Posts</a>
+      <a href="codespace/">CodeSpace</a>
+      <a href="paradox/">Paradox</a>
+    </nav>
   </header>
-  <section>
-    <h2>About Me</h2>
-    <p>I enjoy exploring data, building systems, and solving problems with technology.</p>
-    <p>Currently working on projects in Vue.js, CUDA programming, and SEO strategy.</p>
-    <a href="https://github.com/yourusername" target="_blank">Check out my GitHub</a>
-  </section>
+
+  <main>
+    <p>Explore my learning notes, projects, and thoughts.</p>
+    <p>Use the navigation above to switch between sections.</p>
+  </main>
+
   <footer>
-    <p>&copy; 2024 Hopotta | <a href="mailto:hopotta@gmail.com">Contact Me</a></p>
+    <p>&copy; 2024 Hopotta. All rights reserved.</p>
   </footer>
 </body>
 </html>

@@ -54,7 +54,8 @@
 
     #welcome-message {
       font-size: 1rem;
-      margin-bottom: 1.5rem;
+      margin: 0 0 1.5rem 0;  /* Align left and add bottom margin */
+      text-align: left;  /* Align text left */
     }
 
     #post-container {
@@ -130,7 +131,7 @@
 
         // Extract metadata from the post
         const title = doc.querySelector('meta[name="title"]').content;
-        const content = doc.body.textContent.trim(); // Get body text
+        const content = doc.querySelector('div.content').textContent.trim(); // Use actual post content
         const excerpt = content.length > 200 ? content.substring(0, 200) + '...' : content;
         const author = doc.querySelector('meta[name="author"]').content;
         const date = doc.querySelector('meta[name="date"]').content;

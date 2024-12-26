@@ -139,7 +139,7 @@
         // Create post card
         const card = document.createElement('div');
         card.className = 'post-card';
-        card.innerHTML = 
+        card.innerHTML = `
           <h2>${title}</h2>
           <p>${excerpt}</p>
           <div class="post-meta">
@@ -147,7 +147,7 @@
             <span>Estimated Reading Time: ${readingTime}</span> | 
             <span>Author: ${author}</span>
           </div>
-        ;
+        `;
         card.onclick = () => window.location.href = post.path;
         container.appendChild(card);
       }

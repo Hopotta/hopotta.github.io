@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hopotta's Log</title>
   <style>
-    /* General Reset */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -16,7 +15,6 @@
       min-height: 100vh;
     }
 
-    /* Header Styles */
     header {
       display: flex;
       justify-content: space-between;
@@ -41,7 +39,6 @@
       color: #0078d7;
     }
 
-    /* Main Content Styles */
     main {
       flex: 1;
       padding: 2rem 10%;
@@ -50,12 +47,19 @@
       gap: 2rem;
     }
 
+    #welcome-message {
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
     #post-container {
       display: grid;
-      grid-template-columns: 1fr; /* Single-column layout */
+      grid-template-columns: 1fr;
       gap: 1.5rem;
       max-width: 800px;
-      margin: 0 auto; /* Center align container */
+      margin: 0 auto;
     }
 
     @media (min-width: 768px) {
@@ -85,6 +89,11 @@
     .post-card p {
       margin: 0 0 1rem 0;
       color: #666;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* Limit to 2 lines */
+      -webkit-box-orient: vertical;
     }
 
     .post-meta {
@@ -92,7 +101,6 @@
       color: #666;
     }
 
-    /* Footer Styles */
     footer {
       background-color: #f9f9f9;
       text-align: center;
@@ -114,20 +122,17 @@
         const text = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(text, 'text/html');
-
-        // Extract metadata from the post
         const title = doc.querySelector('meta[name="title"]').content;
         const author = doc.querySelector('meta[name="author"]').content;
         const date = doc.querySelector('meta[name="date"]').content;
         const readingTime = doc.querySelector('meta[name="reading-time"]').content;
         const description = doc.querySelector('meta[name="description"]').content;
 
-        // Create post card
         const card = document.createElement('div');
         card.className = 'post-card';
         card.innerHTML = `
           <h2>${title}</h2>
-          <p>${description.length > 100 ? description.substring(0, 100) + '...' : description}</p>
+          <p>${description}</p>
           <div class="post-meta">
             <span>Date: ${date}</span> | 
             <span>Estimated Reading Time: ${readingTime}</span> | 
@@ -154,8 +159,11 @@
   </header>
 
   <main>
+    <div id="welcome-message">Welcome to Hopotta's Log! Explore the latest insights and articles.</div>
+
+    <!-- Post Cards -->
     <div id="post-container">
-      <!-- Dynamic post cards will be inserted here -->
+      <!-- to be continued -->
     </div>
   </main>
 

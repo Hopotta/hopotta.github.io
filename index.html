@@ -27,12 +27,10 @@
       margin: 0;
       font-size: 1.8rem;
       color: #333;
-      flex: 0.382;
       text-align: left;
     }
 
     nav {
-      flex: 0.618;
       display: flex;
       justify-content: space-evenly;
     }
@@ -49,7 +47,41 @@
 
     main {
       padding: 2rem;
-      text-align: center;
+    }
+
+    .post-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .post-card h2 {
+      font-size: 1.5rem;
+      margin: 0 0 0.5rem;
+      color: #0078d7;
+    }
+
+    .post-card h2 a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .post-card h2 a:hover {
+      text-decoration: underline;
+    }
+
+    .post-info {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .post-summary {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.6;
     }
 
     footer {
@@ -65,15 +97,25 @@
   <header>
     <h1>Hopotta's Log</h1>
     <nav>
-      <a href="posts/posts1.html">Posts</a>
+      <a href="#">Posts</a>
       <a href="codespace/">CodeSpace</a>
       <a href="paradox/">Paradox</a>
     </nav>
   </header>
 
   <main>
-    <p>Explore my learning notes, projects, and thoughts.</p>
-    <p>Use the navigation above to switch between sections.</p>
+    <!-- Post Card 1 -->
+    <div class="post-card">
+      <h2><a href="posts/posts1.html">Critiquing Peer Review</a></h2>
+      <div class="post-info">
+        Date: December 26, 2024 | Estimated Reading Time: 5 min | Author: Hopotta
+      </div>
+      <p class="post-summary">
+        Peer review is a cornerstone of academic publishing, yet it has challenges and biases. In this article, we explore its flaws and potential solutions...
+      </p>
+    </div>
+
+    <!-- 更多文章可以按此格式添加 -->
   </main>
 
   <footer>

@@ -87,17 +87,17 @@
       margin-bottom: 1.5rem;
     }
 
-    /* 代码框样式 */
+    /* 代码框样式，强制设置 position: relative !important */
     pre.code-snippet {
       background-color: #f6f8fa;
       border: 1px solid #d1d5da;
       border-radius: 6px;
       padding: 1rem;
-      font-family: Consolas, Monaco;
+      font-family: Consolas;
       overflow-x: auto;
       margin-bottom: 1.5rem;
+      position: relative !important;
     }
-
     /* 在代码框左上角显示语言标签 */
     pre.code-snippet::before {
       content: attr(data-language);
@@ -109,7 +109,7 @@
       padding: 2px 6px;
       border-radius: 4px;
       font-size: 0.75rem;
-      font-family: Consolas, Monaco;
+      font-family: Consolas;
     }
 
     footer {

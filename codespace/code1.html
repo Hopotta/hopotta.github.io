@@ -385,7 +385,20 @@
   <footer>
     <p>&copy; 2024 Hopotta. All rights reserved.</p>
   </footer>
-                 
+
+  
+  <script>
+    // 页面加载后自动为代码块添加语言标签，并初始化语法高亮
+    document.addEventListener("DOMContentLoaded", function() {
+      var lang = document.querySelector('meta[name="language"]').content;
+      var codeSnippets = document.querySelectorAll('pre.code-snippet');
+      codeSnippets.forEach(function(pre) {
+        pre.setAttribute('data-language', lang);
+      });
+      hljs.highlightAll();
+    });
+  </script>
+                            
                    
 </body>
 </html>

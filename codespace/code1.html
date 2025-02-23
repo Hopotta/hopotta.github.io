@@ -1,1 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="Responsive Code Block: A Sample Implementation">
+  <meta name="author" content="Hopotta">
+  <meta name="date" content="February 23, 2025">
+  <meta name="language" content="Python">
+  <title>Responsive Code Block: A Sample Implementation - Hopotta's CodeSpace</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f9f9f9;
+      padding: 1rem 5%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #333;
+      text-align: left;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 2rem 10%;
+    }
+
+    .article-container {
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .article-title {
+      font-size: 2rem;
+      color: #000;
+      margin-bottom: 0.5rem;
+    }
+
+    .article-info {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-content {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    .introduction {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+
+    /* 代码框样式 */
+    pre.code-snippet {
+      background-color: #f6f8fa;
+      border: 1px solid #d1d5da;
+      border-radius: 6px;
+      padding: 1rem;
+      font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .references {
+      margin-top: 2rem;
+      padding-left: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .references li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hopotta's Log</h1>
+    <nav>
+      <a href="../">Posts</a>
+      <a href="../codespace/">CodeSpace</a>
+      <a href="../paradox/">Paradox</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="article-container">
+      <h1 class="article-title">Responsive Code Block: A Sample Implementation</h1>
+      <div class="article-info">
+        Date: February 23, 2025 | Language: Python | Author: Hopotta
+      </div>
+      <div class="article-content">
+        <p class="introduction">
+          This page demonstrates a responsive code block implementation that adapts to various screen sizes while maintaining a consistent aesthetic with the rest of Hopotta's CodeSpace.
+        </p>
+        <!-- 代码框展示 -->
+        <pre class="code-snippet"><code>
+import threading
+import time
+import tkinter as tk
+import random
+from tkinter import messagebox
+
+class MinesweeperGUI:
+    def __init__(self, game_view_model):
+        self.game_view_model = game_view_model
+        self.game_view_model.gui = self
+        self.root = tk.Tk()
+        self.root.title("Minesweeper")
+        self.root.geometry("400x400")
+        self.buttons = [[None for _ in range(game_view_model.cols)] for _ in range(game_view_model.rows)]
+        self.create_board()
+        self.update_board()
+
+    def create_board(self):
+        for i in range(self.game_view_model.rows):
+            for j in range(self.game_view_model.cols):
+                button = tk.Button(self.root, text="", width=2, height=1, command=lambda i=i, j=j: self.click_cell(i, j))
+                button.grid(row=i, column=j)
+                self.buttons[i][j] = button
+
+    def update_board(self):
+        for i in range(self.game_view_model.rows):
+            for j in range(self.game_view_model.cols):
+                cell = self.game_view_model.cells[i][j]
+                if cell.is_revealed:
+                    if cell.has_mine:
+                        self.buttons[i][j].config(text="💣", bg="red")
+                    else:
+                        if cell.adjacent_mines > 0:
+                            self.buttons[i][j].config(text=str(cell.adjacent_mines))
+                        else:
+                            self.buttons[i][j].config(text="", bg="lightyellow")
+                elif cell.is_flagged:
+                    self.buttons[i][j].config(text="🚩")
+                else:
+                    self.buttons[i][j].config(text="")
+
+    def click_cell(self, event, row, col):
+        self.game_view_model.reveal_cell(row, col)
+        self.update_board()
+
+        if self.game_view_model.is_win():
+            messagebox.showinfo("Congratulations", "You won! You took " + str(self.game_view_model.elapsed_time) + " seconds to win the game!")
+            self.game_view_model.timer_running = False
+        elif self.game_view_model.is_game_over:
+            self.show_all_mines()
+            messagebox.showinfo("Game Over", "You lost! You took " + str(self.game_view_model.elapsed_time) + " seconds to lose the game!")
+
+    def show_all_mines(self):
+        for i in range(self.game_view_model.rows):
+            for j in range(self.game_view_model.cols):
+                if self.game_view_model.cells[i][j].has_mine:
+                    self.buttons[i][j].config(text="💣", bg="red")
+
+    def run(self):
+        self.game_view_model.start_game()
+        self.root.mainloop()
+
+    def create_board(self):
+        for i in range(self.game_view_model.rows):
+            for j in range(self.game_view_model.cols):
+                button = tk.Button(self.root, text="", width=2, height=1)
+                button.grid(row=i, column=j)
+
+                button.bind("<Button-1>", lambda event, row=i, col=j: self.click_cell(event, row, col))
+                button.bind("<Button-3>", lambda event, row=i, col=j: self.toggle_flag(event, row, col))
+
+                self.buttons[i][j] = button
+    
+    def toggle_flag(self, event, row, col):
+        if self.game_view_model.is_game_over:
+            return
+        cell = self.game_view_model.cells[row][col]
+
+        if cell.is_revealed:
+            return
+        if not cell.is_flagged:
+            cell.is_flagged = True
+            self.buttons[row][col].config(text="🚩")
+        else:
+            cell.is_flagged = False
+            self.buttons[row][col].config(text="")
+    
+    def restart_game(self):
+        self.game_view_model = GameViewModel()
+        self.game_view_model.gui = self
+        self.root.destroy()
+        self.__init__(self.game_view_model)
+        self.run()        
+
+class GameViewModel:
+    def __init__(self, rows=13, cols=13, mines=26):
+        self.rows = rows
+        self.cols = cols
+        self.mines = mines
+        self.cells = [[Cell() for _ in range(cols)] for _ in range(rows)]
+        self.is_game_over = False
+        self.elapsed_time = 0
+        self.flag_count = 0
+        self.start_time = None
+        self.timer_thread = None
+        self.timer_running = False
+        self.gui = None
+
+    def start_game(self):
+        self.place_mines()
+        self.start_time = time.time()
+        self.timer_thread = threading.Thread(target=self.update_timer)
+        self.timer_thread.start()
+        self.timer_running = True
+
+    def place_mines(self):
+        mines_to_place = self.mines
+        while mines_to_place > 0:
+            row = random.randint(0, self.rows - 1)
+            col = random.randint(0, self.cols - 1)
+
+            if not self.cells[row][col].has_mine:
+                self.cells[row][col].has_mine = True
+                self.update_adjacent_mines(row, col)
+                mines_to_place -= 1
+
+    def update_adjacent_mines(self, row, col):
+        for r in range(row - 1, row + 2):
+            for c in range(col - 1, col + 2):
+                if 0 <= r < self.rows and 0 <= c < self.cols:
+                    self.cells[r][c].adjacent_mines += 1
+
+    def update_timer(self):
+        while self.timer_running:
+            time.sleep(1)
+            self.elapsed_time = int(time.time() - self.start_time)
+
+    def reveal_cell(self, row, col):
+        if self.cells[row][col].is_revealed or self.is_game_over:
+            return
+        self.cells[row][col].is_revealed = True
+
+        if self.cells[row][col].has_mine:
+            self.game_over()
+            return
+        elif self.cells[row][col].adjacent_mines == 0:
+            self.reveal_adjacent_cells(row, col)
+        else:
+            self.gui.update_board()
+
+    def update_adjacent_cells_with_zero(self, row, col):
+        for i in range(row - 1, row + 2):
+            for j in range(col - 1, col + 2):
+                if 0 <= i < self.rows and 0 <= j < self.cols:
+                    if not self.cells[i][j].has_mine and self.cells[i][j].adjacent_mines == 0 and not self.cells[i][j].is_revealed:
+                        self.reveal_adjacent_cells(i, j)
+
+    def reveal_adjacent_cells(self, row, col):
+        revealed_cells = set()
+        def reveal_recursive(r, c):
+            if (r, c) in revealed_cells:
+                return
+            revealed_cells.add((r, c))
+
+            if self.cells[r][c].adjacent_mines == 0:
+                for i in range(r - 1, r + 2):
+                    for j in range(c - 1, c + 2):
+                        if 0 <= i < self.rows and 0 <= j < self.cols and (i != r or j != c):
+                            if not self.cells[i][j].has_mine:
+                                reveal_recursive(i, j)
+        reveal_recursive(row, col)
+
+        for r, c in revealed_cells:
+            if not self.cells[r][c].is_revealed:
+                self.cells[r][c].is_revealed = True
+                self.update_adjacent_cells_with_zero(r, c)
+
+    def toggle_flag(self, row, col):
+        if self.cells[row][col].is_revealed or self.is_game_over:
+            return
+        self.cells[row][col].is_flagged = not self.cells[row][col].is_flagged
+        
+        if self.cells[row][col].is_flagged:
+            self.flag_count += 1
+        else:
+            self.flag_count -= 1
+
+    def game_over(self):
+        self.is_game_over = True
+        self.timer_running = False
+
+    def update_timer(self):
+        while not self.is_game_over:
+            time.sleep(1)
+            self.elapsed_time = int(time.time() - self.start_time)
+
+    def is_win(self):
+        for row in self.cells:
+            for cell in row:
+                if not cell.is_revealed and not cell.has_mine:
+                    return False
+        return True
+
+class Cell:
+    def __init__(self):
+        self.has_mine = False
+        self.is_revealed = False
+        self.is_flagged = False
+        self.adjacent_mines = 0
+
+game_view_model = GameViewModel()
+minesweeper_gui = MinesweeperGUI(game_view_model)
+minesweeper_gui.run()
+
+        </code></pre>
+        <!-- 留出存放文本内容的空间 -->
+        <p>
+          Here you can add further explanation about the code snippet, discuss its implementation details, and provide usage examples. This area is designed to host text content in a style similar to that of posts.
+        </p>
+        <!-- References 模板 -->
+        <h2>References</h2>
+        <ol class="references">
+          <li>[Reference 1: Details to be filled]</li>
+          <li>[Reference 2: Details to be filled]</li>
+        </ol>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Hopotta. All rights reserved.</p>
+  </footer>
+</body>
+</html>
 

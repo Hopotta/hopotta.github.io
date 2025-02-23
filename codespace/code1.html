@@ -92,11 +92,18 @@
       border: 1px solid #d1d5da;
       border-radius: 6px;
       padding: 1rem;
-      font-family: Consolas, monospace !important;
+      font-family: Consolas;
       overflow-x: auto;
       margin-bottom: 1.5rem;
       position: relative !important;
     }
+    
+    pre.code-snippet code {
+      font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono' !important;
+      font-size: 0.95rem; /* 可选，调整字体大小 */
+      color: inherit; /* 保持代码颜色 */
+    }
+
     /* 在代码框左上角显示语言标签 */
     pre.code-snippet::before {
       content: attr(data-language);

@@ -8,8 +8,7 @@
   <meta name="date" content="February 23, 2025">
   <meta name="language" content="Python">
   <title>Responsive Code Block: A Sample Implementation - Hopotta's CodeSpace</title>
-  <!-- 引入 highlight.js 样式（此处使用 GitHub 主题，可根据需要更换） -->
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+
   <style>
     body {
       margin: 0;
@@ -386,26 +385,7 @@
   <footer>
     <p>&copy; 2024 Hopotta. All rights reserved.</p>
   </footer>
-                            
-  <!-- 引入 highlight.js -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-  <script>
-    // 页面加载后自动为代码块添加语言标签，并初始化语法高亮
-    document.addEventListener("DOMContentLoaded", function() {
-      var lang = document.querySelector('meta[name="language"]').content;
-      var codeSnippets = document.querySelectorAll('pre.code-snippet');
-      codeSnippets.forEach(function(pre) {
-        pre.setAttribute('data-language', lang);
-      });
-      hljs.highlightAll();
-    });
-  </script>
-  pre.code-snippet code.hljs,
-  pre.code-snippet code.hljs.language-python {
-    font-family: Consolas, monospace !important;
-  }
-
-                            
+                 
+                   
 </body>
 </html>
-

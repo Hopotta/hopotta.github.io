@@ -24,24 +24,18 @@
       width: 100%;
       z-index: 999;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 1rem 3rem;
+      padding: 1rem 2rem; /* 控制左右边距 */
       background-color: rgba(249, 249, 249, 0.75);
       -webkit-backdrop-filter: blur(6px);
       backdrop-filter: blur(6px);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       flex-wrap: wrap;
+      box-sizing: border-box;
     }
     
-    .header-left, .header-right {
-      display: flex;
-      align-items: center;
-    }
-    
-    .header-right {
-      gap: 2rem;
-      flex-wrap: wrap;
+    .spacer {
+      flex: 1 1 auto;
     }
 
     header h1 {
@@ -189,15 +183,15 @@
 </head>
 <body>
   <header>
-    <div class="header-left">
-      <h1>Hopotta's Log</h1>
-    </div>
-    <nav class="header-right">
-      <a href="">Posts</a>
-      <a href="./codespace/">CodeSpace</a>
-      <a href="./paradox/">Paradox</a>
-    </nav>
+  <h1>Hopotta's Log</h1>
+  <div class="spacer"></div>
+  <nav>
+    <a href="">Posts</a>
+    <a href="./codespace/">CodeSpace</a>
+    <a href="./paradox/">Paradox</a>
+  </nav>
 </header>
+
 
 
   <main>

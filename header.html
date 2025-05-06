@@ -28,7 +28,7 @@ header {
 
 header h1 {
   margin: 0;
-  font-size: clamp(1rem, 2.5vw, 1.5rem); /* 响应式字体大小 */
+  font-size: 1.4rem;
   color: #333;
 }
 
@@ -36,17 +36,33 @@ header nav {
   margin-left: auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 header nav a {
   text-decoration: none;
   color: #000;
-  font-size: clamp(0.9rem, 2vw, 1.2rem); /* 响应式导航字体 */
+  font-size: 1rem;
   padding: 0.3rem 0.6rem;
 }
 
 header nav a:hover {
   text-decoration: underline;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  header {
+    padding: 0.8rem 5%;
+  }
+
+  header h1 {
+    font-size: 1.1rem;
+  }
+
+  header nav a {
+    font-size: 0.9rem;
+    gap: 1rem;
+  }
 }
 </style>

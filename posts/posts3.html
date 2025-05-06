@@ -9,54 +9,6 @@
   <meta name="reading-time" content="15 min">
   <title>Academic Air Travel: A Paradox in Climate Awareness - Hopotta's Log</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      padding-top: 4rem;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-      background-color: #ffffff;
-      color: #333;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 999;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 5%;
-      background-color: rgba(249, 249, 249, 0.75);
-      -webkit-backdrop-filter: blur(6px);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      flex-wrap: wrap;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.5rem;
-      color: #333;
-      text-align: left;
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      gap: 2rem;
-      flex-wrap: wrap; /* Prevent overflow */
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #000;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
 
     main {
       padding: 2rem 10%;
@@ -112,14 +64,16 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Hopotta's Log</h1>
-    <nav>
-      <a href="../">Posts</a>
-      <a href="../codespace/">CodeSpace</a>
-      <a href="../paradox/">Paradox</a>
-    </nav>
-  </header>
+  <div id="site-header"></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('/header.html')
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById('site-header').innerHTML = html;
+        });
+    });
+  </script>
 
   <main>
     <div class="article-container">

@@ -13,7 +13,7 @@
 ## 2. Structural and Organizational Improvements  
 - **Clarified directory layout** for better scalability:  
   - `index.html`: Homepage  
-  - `navbar.html`: Shared navigation bar component  
+  - `header.html`: Shared navigation bar component  
   - `/posts/`: Article pages (`posts1.html`–`posts4.html`)  
   - `/codespace/`: Project showcase pages (`index.html`, `code1.html`, etc.)  
 - **Improved internal link structure** by standardizing relative paths.  

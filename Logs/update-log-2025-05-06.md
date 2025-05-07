@@ -4,7 +4,7 @@
 **Version:** 1.2  
 
 ## 1. Major Update: Navigation Bar Refactoring  
-- **Created a reusable `navbar.html` component** for consistent navigation across all pages.  
+- **Created a reusable `header.html` component** for consistent navigation across all pages.  
 - **Replaced hardcoded navigation bars** in all HTML files with a `<script>` that dynamically loads `header.html`.  
 - **Improved maintainability** and reduced redundancy in multi-page structure.  
 - **Introduced flexbox layout and spacing improvements** to ensure no overflow and proper margin from page edges.  

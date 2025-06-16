@@ -16,7 +16,8 @@
 ## 3. Layout and Positioning Improvements  
 - **Centered the header horizontally with transform** to accommodate various screen sizes while maintaining consistent spacing.  
 - **Set maximum width of 1200px for header** to slightly exceed main content width for better visual hierarchy.  
-- **Added padding and margin adjustments** to prevent overflow and ensure alignment with page content.  
+- **Added padding and margin adjustments** to prevent overflow and ensure alignment with page content.
+- **Added a favicon of this webpage** so that you can see it in tab page
 
 ## Next Steps  
 - Conduct testing on different devices and browsers to verify the CodeSpace interface.  

@@ -1,4 +1,4 @@
-<header>
+<header class="glass">
   <h1>Hopotta's Log</h1>
   <nav>
     <a href="/">Posts</a>
@@ -6,18 +6,84 @@
     <a href="/paradox/">Paradox</a>
   </nav>
 </header>
+
 <style>
-header {
-  position: fixed; top:0; left:0; width:100%; z-index:999;
-  display:flex; align-items:center; padding: 1rem 5%;
-  background:rgba(249,249,249,0.75);
-  -webkit-backdrop-filter:blur(6px);
-  backdrop-filter:blur(6px);
-  box-shadow:0 2px 4px rgba(0,0,0,0.1);
-  box-sizing:border-box;
-}
-header h1 { margin:0; font-size:1.5rem; }
-header nav { margin-left:auto; display:flex; gap:2rem; }
-header nav a { text-decoration:none; color:#000; }
-header nav a:hover { text-decoration:underline; }
+  .glass {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px) saturate(180%);
+    border-radius: 1rem;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.5),
+      0 8px 32px rgba(31, 38, 135, 0.2),
+      inset 0 4px 20px rgba(255, 255, 255, 0.3);
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* 边缘高光效果 */
+  .glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.2));
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: -2;
+  }
+
+  /* 背景折射 + 液态高光 */
+  .glass::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: inherit;
+    filter: blur(8px) brightness(1.15);
+    z-index: -3;
+  }
+
+  .glass h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #222;
+    z-index: 1;
+    position: relative;
+  }
+
+  .glass nav {
+    display: flex;
+    gap: 2rem;
+    z-index: 1;
+    position: relative;
+  }
+
+  .glass nav a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .glass nav a:hover {
+    color: #000;
+    text-decoration: underline;
+  }
 </style>

@@ -8,6 +8,7 @@
 </header>
 
 <style>
+
   .glass {
     position: fixed;
     top: 1rem;
@@ -19,7 +20,10 @@
     z-index: 999;
     display: flex;
     align-items: center;
+
+    flex-wrap: nowrap;
     justify-content: space-between;
+
     padding: 1rem 2rem;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(5px) saturate(180%);
@@ -30,10 +34,10 @@
       0 8px 32px rgba(31, 38, 135, 0.2),
       inset 0 4px 20px rgba(255, 255, 255, 0.3);
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: hidden; 
+    position: fixed;  
   }
 
-  /* 边缘高光效果 */
   .glass::before {
     content: '';
     position: absolute;
@@ -41,8 +45,8 @@
     padding: 1px;
     border-radius: 1rem;
     background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.2));
-    -webkit-mask: 
-      linear-gradient(#fff 0 0) content-box, 
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -50,7 +54,6 @@
     z-index: -2;
   }
 
-  /* 背景折射 + 液态高光 */
   .glass::after {
     content: '';
     position: absolute;
@@ -59,12 +62,23 @@
     background: inherit;
     filter: blur(8px) brightness(1.15);
     z-index: -3;
+    pointer-events: none;
   }
 
   .glass h1 {
     margin: 0;
-    font-size: 1.5rem;
+
+    font-size: clamp(1rem, 3.5vw, 1.5rem);
     color: #222;
+
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-right: 1rem;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     z-index: 1;
     position: relative;
   }
@@ -72,6 +86,8 @@
   .glass nav {
     display: flex;
     gap: 2rem;
+    flex: 0 0 auto; 
+    align-items: center;
     z-index: 1;
     position: relative;
   }
@@ -81,10 +97,61 @@
     color: #444;
     font-weight: 600;
     transition: color 0.3s ease;
+
+    white-space: nowrap;
+    display: inline-block;
+    
   }
 
   .glass nav a:hover {
     color: #000;
     text-decoration: underline;
   }
+
+  
+  @media (max-width: 900px) {
+    .glass nav {
+      gap: 1.2rem;
+    }
+    .glass nav a {
+      font-size: 0.95rem;
+      padding: 0 2px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .glass {
+      padding: 0.8rem 1rem;
+    }
+    .glass h1 {
+     
+      font-size: clamp(0.95rem, 4.5vw, 1.2rem);
+    }
+    .glass nav {
+      gap: 0.9rem;
+    }
+    .glass nav a {
+      font-size: 0.9rem;
+      padding: 0 1px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    
+    .glass {
+      padding: 0.6rem 0.8rem;
+    }
+    .glass h1 {
+      font-size: clamp(0.9rem, 5.5vw, 1.05rem);
+      margin-right: 0.6rem;
+    }
+    .glass nav {
+      gap: 0.6rem;
+    }
+    .glass nav a {
+      font-size: 0.85rem;
+      
+    }
+  }
+
 </style>

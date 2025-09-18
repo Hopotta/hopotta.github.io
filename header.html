@@ -136,21 +136,21 @@
   }
 
   @media (max-width: 520px) {
-    
+    :root {
+      --header-vert-padding: 1.2rem; 
+      --header-min-height: 60px;     
+    }
     .glass {
-      padding: 0.6rem 0.8rem;
+      padding: var(--header-vert-padding) 1rem;
     }
     .glass h1 {
-      font-size: clamp(0.9rem, 5.5vw, 1.05rem);
-      margin-right: 0.6rem;
-    }
-    .glass nav {
-      gap: 0.6rem;
+      font-size: 1.05rem; 
+      line-height: 1.3;   
     }
     .glass nav a {
-      font-size: 0.85rem;
-      
+      font-size: 0.9rem;
     }
   }
+
 
 </style>

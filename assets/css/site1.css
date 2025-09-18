@@ -1,6 +1,8 @@
+/* ========== 全局基础样式 ========== */
 body {
   margin: 0;
-  padding-top: 4rem; 
+  /* 增加顶部留白，确保固定 header 不会遮挡正文（header 高度约 56px + top offset） */
+  padding-top: 5rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
   background-color: #ffffff;
   color: #333;
@@ -10,21 +12,31 @@ body {
 }
 
 main {
-  padding: 2rem 10%; 
+  /* 使用 clamp 控制左右内边距，适配不同视口 */
+  padding: 2rem clamp(0.75rem, 4vw, 2.5rem);
 }
 
+/* 使文章容器与 header 宽度视觉更接近：不要超过 header 的宽度 */
 .article-container {
-  max-width: 90%;
+  /* 在小屏用百分比，在大屏限制为 1100px，保持比 header 稍窄 */
+  max-width: min(85%, 1100px);
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  box-sizing: border-box;
 }
 
+/* 标题：桌面较大，手机上略放大（让它比正文明显） */
 .article-title {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 3.2vw, 2rem); /* 桌面大，手机合适 */
+  line-height: 1.15;
   color: #000;
   margin-bottom: 0.5rem;
 }
 
+/* 副信息与正文样式 */
 .article-info {
   font-size: 0.9rem;
   color: #666;
@@ -35,7 +47,11 @@ main {
   font-size: 1rem;
   line-height: 1.8;
   color: #333;
+  word-break: break-word;
+  hyphens: auto;
 }
+
+.article-content p { margin-bottom: 1rem; }
 
 footer {
   text-align: center;
@@ -45,38 +61,18 @@ footer {
   font-size: 0.9rem;
 }
 
-main {
-  padding: 2rem clamp(0.75rem, 4vw, 2.5rem);
+/* ========== 响应式调整：细化移动端体验 ========== */
+
+/* 中等窄屏：压缩导航间距、略缩标题，但保持一行布局 */
+@media (max-width: 900px) {
+  .article-container { max-width: min(90%, 1000px); }
 }
 
-.article-container {
-  max-width: min(80%, 1172px);
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  box-sizing: border-box;
-}
-
-.article-title {
-  font-size: clamp(1.25rem, 4.5vw, 2rem);
-  line-height: 1.2;
-}
-
-.article-content {
-  word-break: break-word;
-  hyphens: auto;
-}
-
-.article-content p {
-  margin-bottom: 1rem;
-}
-
+/* 手机和更窄屏 */
 @media (max-width: 520px) {
-  main {
-    padding: 1.2rem 0.8rem;
-  }
+  body { padding-top: 5rem; } /* 确保留白适配 header 高度 */
+
+  main { padding: 1.2rem 0.8rem; }
 
   .article-container {
     max-width: 100%;
@@ -84,12 +80,18 @@ main {
     padding-right: 0.6rem;
   }
 
+  /* 将文章标题在手机上稍微调大一些，比正文明显 */
   .article-title {
-    font-size: 1.1rem;
+    font-size: 1.25rem; /* 比正文显著更大 */
   }
 
   .article-content {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     line-height: 1.7;
   }
+}
+
+/* 超宽屏保护：不要让正文无限拉伸 */
+@media (min-width: 1600px) {
+  .article-container { max-width: 1200px; }
 }

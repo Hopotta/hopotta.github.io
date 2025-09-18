@@ -31,8 +31,7 @@
 
 ---
 
-## Next Steps  
-- Conduct testing on different devices and browsers to verify the CodeSpace interface.  
+## Next Steps   
 - Plan for additional interactive code projects in `codespace/`.  
 - Plan for designing interfaces of 'Paradox'.  
 - Consider extracting the footer into a shared component (`footer.html`) for consistent branding.  

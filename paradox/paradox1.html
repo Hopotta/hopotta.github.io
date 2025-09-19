@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="title" content="Paradox and the Limits of Coherence" />
+  <meta name="author" content="Hopotta" />
+  <meta name="date" content="September 19, 2025" />
+  <meta name="reading-time" content="10 min" />
+
+  <title>Paradox — Hopotta's Log</title>
+  <link rel="icon" href="../favicon.png" type="image/png" />
+
+  <link rel="stylesheet" href="../assets/css/site1.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --muted: #6b7280;
+      --meta-bg: rgba(15, 23, 42, 0.04);
+      --meta-border: rgba(15, 23, 42, 0.06);
+      --accent: #0f172a;
+    }
+
+    html,body {
+      font-family: -apple-system, 'Inter', system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .article-container h1,
+    .article-title {
+      font-family: -apple-system, BlinkMacSystemFont, 'Merriweather', Georgia, "Times New Roman", serif;
+      letter-spacing: -0.02em;
+    }
+
+    .article-container {
+      max-width: min(85%, 1100px);
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      box-sizing: border-box;
+    }
+
+    .article-title {
+      font-size: clamp(1.75rem, 3.2vw, 2.25rem); /* title larger but bounded */
+      margin: 0 0 0.6rem 0;
+      color: var(--accent);
+      line-height: 1.12;
+    }
+
+    .article-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.28rem 0.6rem;
+      border-radius: 999px;
+      background: var(--meta-bg);
+      border: 1px solid var(--meta-border);
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1;
+      box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+      backdrop-filter: blur(2px);
+    }
+
+    .meta-icon {
+      display: inline-flex;
+      width: 1em;
+      height: 1em;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95em;
+      opacity: 0.9;
+    }
+
+    .meta-sep {
+      width: 1px;
+      height: 20px;
+      background: rgba(0,0,0,0.04);
+      border-radius: 2px;
+      margin: 0 0.25rem;
+    }
+
+    .article-content {
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #222;
+      font-size: 1rem;
+      line-height: 1.75;
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    .lead {
+      color: #3f4752;
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+    }
+
+    pre, code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 520px) {
+      .article-title {
+        font-size: 1.5rem;
+      }
+      .meta-item { font-size: 0.85rem; padding: 0.22rem 0.5rem; }
+      .article-container { padding-left: 0.6rem; padding-right: 0.6rem; }
+      body { padding-top: 5.2rem; } 
+    }
+  </style>
+</head>
+
+<body>
+  <div id="site-header"></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('../header.html')
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById('site-header').innerHTML = html;
+        });
+    });
+  </script>
+
+  <main>
+    <div class="article-container">
+      <h1 class="article-title">Paradox and the Limits of Coherence</h1>
+
+      <div class="article-info" aria-label="Article metadata">
+        <span class="meta-item" title="Publication date">
+          <span class="meta-icon" aria-hidden>📅</span>
+          <span>Dec 26, 2024</span>
+        </span>
+
+        <span class="meta-item" title="Estimated reading time">
+          <span class="meta-icon" aria-hidden>⏱️</span>
+          <span>10 min</span>
+        </span>
+
+        <span class="meta-item" title="Author">
+          <span class="meta-icon" aria-hidden>✍️</span>
+          <span>Hopotta</span>
+        </span>
+      </div>
+
+      <div class="article-content">
+        <p class="lead">
+          This essay examines the structural tensions that arise when theoretical rigor encounters lived complexity.
+          Through reflective exposition, it interrogates how paradoxes function as productive markers—revealing
+          the boundary conditions of concepts rather than mere contradictions to be resolved.
+        </p>
+
+        <p>
+          <strong>Abstract.</strong> Paradoxical phenomena often signal that our classificatory schemes are stretched
+          beyond intended scope. In scholarship they function both as warning beacons and as heuristics: they compel
+          us to refine definitions, expose hidden assumptions, and occasionally permit the emergence of new conceptual
+          tools. This piece aims to map a few recurrent paradoxes and to sketch methodological responses that preserve
+          analytic clarity while acknowledging empirical recalcitrance.
+        </p>
+
+        <p>
+          The essay continues here. Discuss the paradoxes, provide examples, and analyze implications. You can add
+          subsections, citations, and illustrative examples as needed.
+        </p>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Hopotta. All rights reserved.</p>
+  </footer>
+</body>
+</html>

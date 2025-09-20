@@ -9,7 +9,7 @@
   <style>
     body {
       margin: 0;
-      padding-top: 5rem; /* 给固定 header 腾出空间 */
+      padding-top: 5rem; 
       font-family: -apple-system, 'Inter', system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -20,7 +20,6 @@
       min-height: 100vh;
     }
   
-    /* Main Content Styles */
     main {
       flex: 1;
       padding: 2rem clamp(0.75rem, 4vw, 2.5rem);
@@ -31,7 +30,6 @@
       box-sizing: border-box;
     }
   
-    /* 首页大标题：缩小一些，保持层级感 */
     main > h1 {
       font-family: 'Merriweather', Georgia, "Times New Roman", serif;
       font-size: clamp(1.4rem, 3.2vw, 2rem);
@@ -51,7 +49,6 @@
       color: #444;
     }
   
-    /* posts 列表：每个占一行（不再多列） */
     #post-container {
       display: flex;
       flex-direction: column;
@@ -74,7 +71,6 @@
       transform: translateY(-5px);
     }
   
-    /* post 标题：调小字号 */
     .post-card h2 {
       margin: 0 0 0.8rem 0;
       font-size: clamp(1.1rem, 2vw, 1.35rem);
@@ -97,16 +93,14 @@
       color: #666;
     }
   
-    /* Footer Styles */
     footer {
       background-color: #f9f9f9;
       text-align: center;
       padding: 1rem;
-      margin-top: auto; /* Push footer to the bottom */
+      margin-top: auto; 
       box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
     }
   
-    /* 窄屏优化 */
     @media (max-width: 520px) {
       main { padding: 1.2rem 0.8rem; }
       main > h1 { font-size: 1.25rem; }
@@ -134,16 +128,14 @@
         const parser = new DOMParser();
         const doc = parser.parseFromString(text, 'text/html');
 
-        // Extract metadata from the post
         const title = doc.querySelector('meta[name="title"]').content;
-        const contentElement = doc.querySelector('div.article-content'); // Locate the main content
-        const content = contentElement ? contentElement.textContent.trim() : ''; // Extract only the main content
+        const contentElement = doc.querySelector('div.article-content'); 
+        const content = contentElement ? contentElement.textContent.trim() : ''; 
         const excerpt = content ? (content.length > 200 ? content.substring(0, 200).trim() + '...' : content.trim()) : 'No content available.';
         const author = doc.querySelector('meta[name="author"]').content;
         const date = doc.querySelector('meta[name="date"]').content;
         const readingTime = doc.querySelector('meta[name="reading-time"]').content;
 
-        // Create post card
         const card = document.createElement('div');
         card.className = 'post-card';
         card.innerHTML = `
@@ -160,11 +152,9 @@
       }
     }
 
-    // Load posts on window load
     window.onload = loadPosts;
   </script>
 
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL808HX9MQ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -187,10 +177,7 @@
     });
   </script>
 
-
-
   <main>
-    <!-- Welcome Message -->
     <h1>
       👋Welcome To Hopotta's Log! 
     </h1>

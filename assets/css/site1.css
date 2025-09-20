@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap');
+:root{
+  --muted: #6b7280;
+  --meta-bg: rgba(15, 23, 42, 0.04);
+  --meta-border: rgba(15, 23, 42, 0.06);
+  --accent: #0f172a;
+}
+
 html, body {
   margin: 0;
-  /* 增加顶部留白，确保固定 header 不会遮挡正文（header 高度约 56px + top offset） */
   padding-top: 5rem;
   font-family: -apple-system, 'Inter', system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -14,7 +20,6 @@ html, body {
 }
 
 main {
-  /* 使用 clamp 控制左右内边距，适配不同视口 */
   flex: 1;
       padding: 2rem clamp(0.75rem, 4vw, 2.5rem);
       display: flex;
@@ -33,9 +38,7 @@ main > h1 {
   letter-spacing: -0.02em;
 }
 
-/* 使文章容器与 header 宽度视觉更接近：不要超过 header 的宽度 */
 .article-container {
-  /* 在小屏用百分比，在大屏限制为 1100px，保持比 header 稍窄 */
   max-width: min(85%, 1100px);
   width: 100%;
   margin-left: auto;
@@ -45,27 +48,31 @@ main > h1 {
   box-sizing: border-box;
 }
 
-/* 标题：桌面较大，手机上略放大（让它比正文明显） */
 .article-title {
-  font-size: clamp(1.5rem, 3.2vw, 2rem); /* 桌面大，手机合适 */
+  font-size: clamp(1.5rem, 3.2vw, 2rem); 
   line-height: 1.15;
   color: #000;
   margin-bottom: 0.5rem;
 }
 
-/* 副信息与正文样式 */
 .article-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
   font-size: 0.9rem;
   color: #666;
   margin-bottom: 1.5rem;
 }
 
 .article-content {
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #222;
   font-size: 1rem;
   line-height: 1.8;
-  color: #333;
   word-break: break-word;
   hyphens: auto;
+  font-size: 1rem;
 }
 
 .article-content p { margin-bottom: 1rem; }
@@ -78,16 +85,66 @@ footer {
   font-size: 0.9rem;
 }
 
-/* ========== 响应式调整：细化移动端体验 ========== */
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+  background: var(--meta-bg);
+  border: 1px solid var(--meta-border);
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+  backdrop-filter: blur(2px);
+}
 
-/* 中等窄屏：压缩导航间距、略缩标题，但保持一行布局 */
+.meta-icon {
+  display: inline-flex;
+  width: 1em;
+  height: 1em;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95em;
+  opacity: 0.9;
+}
+
+.meta-sep {
+  width: 1px;
+  height: 20px;
+  background: rgba(0,0,0,0.04);
+  border-radius: 2px;
+  margin: 0 0.25rem;
+}
+
+.lead {
+  color: #3f4752;
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+.lead::before {
+content: "“";  
+font-size: 7em;  
+line-height: 0.8;  
+margin-right: 0.1em;  
+vertical-align: -0.4em;  
+color: #333;  
+float: left;  
+}
+
+pre, code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+  font-size: 0.9rem;
+}
+
 @media (max-width: 900px) {
   .article-container { max-width: min(90%, 1000px); }
 }
 
-/* 手机和更窄屏 */
 @media (max-width: 520px) {
-  body { padding-top: 5rem; } /* 确保留白适配 header 高度 */
+  body { padding-top: 5rem; } 
 
   main { padding: 1.2rem 0.8rem; }
 
@@ -97,9 +154,9 @@ footer {
     padding-right: 0.6rem;
   }
 
-  /* 将文章标题在手机上稍微调大一些，比正文明显 */
+
   .article-title {
-    font-size: 1.25rem; /* 比正文显著更大 */
+    font-size: 1.25rem; 
   }
 
   .article-content {
@@ -108,7 +165,7 @@ footer {
   }
 }
 
-/* 超宽屏保护：不要让正文无限拉伸 */
+
 @media (min-width: 1600px) {
   .article-container { max-width: 1200px; }
 }

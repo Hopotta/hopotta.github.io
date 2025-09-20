@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap');
+
 :root{
   --muted: #6b7280;
   --meta-bg: rgba(15, 23, 42, 0.04);
@@ -8,7 +9,7 @@
 
 html, body {
   margin: 0;
-  padding-top: 5rem;
+  padding-top: 3rem;
   font-family: -apple-system, 'Inter', system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -122,22 +123,40 @@ footer {
   color: #3f4752;
   margin-bottom: 1rem;
   font-size: 1.05rem;
+  position: relative; 
+  padding-left: 1em; 
 }
 
 .lead::before {
-content: "“";  
-font-size: 7em;  
-line-height: 0.8;  
-margin-right: 0.1em;  
-vertical-align: -0.4em;  
-color: #333;  
-float: left;  
+  content: "“";
+  font-size: 4em;
+  line-height: 0.8;
+  color: #333;
+  position: absolute;
+  left: -0.23em;
+  top: -0.055em;
 }
 
 pre, code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
   font-size: 0.9rem;
 }
+
+.references {
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.8; 
+  color: #222;
+}
+
+.references ol {
+  padding-left: 1.5rem; 
+}
+
+.references li {
+  margin-bottom: 1rem; 
+}
+
 
 @media (max-width: 900px) {
   .article-container { max-width: min(90%, 1000px); }

@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="title" content="Why Large Language Models Give Different Answers to the Same Question" />
+  <meta name="title" content="Why Large Language Models Give Different Answers to the Same Question?" />
   <meta name="author" content="Hopotta" />
   <meta name="date" content="November 12, 2025" />
-  <meta name="reading-time" content="8 min" />
+  <meta name="reading-time" content="10 min" />
   <title>Why Large Language Models Give Different Answers to the Same Question</title>
   <link rel="stylesheet" href="../assets/css/site1.css" />
   <link rel="icon" href="../favicon.png" type="image/png" />
@@ -92,7 +92,7 @@
 </style>
   <main>
     <div class="article-container">
-      <h1 class="article-title" style="font-family: 'Merriweather';">Why Large Language Models Give Different Answers to the Same Question</h1>
+      <h1 class="article-title" style="font-family: 'Merriweather';">Why Large Language Models Give Different Answers to the Same Question?</h1>
 
       <div class="article-info">
         <span class="meta-item">Date: Nov 12, 2025</span>
@@ -196,7 +196,7 @@
           </div>
         </div>
 
-        <p>At its core, an LLM is not a deterministic rule-based system. It is a probabilistic generator that, given a prompt, samples from a high-dimensional distribution of possible continuations. Every token <em>t<sub>i</sub></em> the model produces is selected from</p>
+        <p>At its core, an LLM is a probabilistic generator that, given a prompt, samples from a high-dimensional distribution of possible continuations. Every token <em>t<sub>i</sub></em> the model produces is selected from</p>
 
         <div>
           <p style="text-align:center; margin: 0.6rem 0;">
@@ -254,7 +254,7 @@
 
         <p>where \(H(P_\tau)\) grows monotonically with \(\tau\). Higher entropy corresponds to greater lexical diversity. Even with a low temperature, the non-determinism introduced by floating-point arithmetic and sampling noise can create <em>branching trajectories</em> in the generation process, much like chaos in dynamical systems where infinitesimal perturbations cause macroscopic divergence.</p>
 
-        <p>However, the variability goes deeper than randomness. The underlying mechanism of an LLM’s “thought process” is not a singular line of reasoning but an ensemble of representational patterns that coexist in <em>superposition</em>. Within the model’s internal vector space, multiple linguistic associations are encoded simultaneously. The embedding space can be imagined as a manifold \( \mathcal{M} \subset \mathbb{R}^d \), where each point represents a latent semantic configuration. The act of generation corresponds to a stochastic traversal across \( \mathcal{M} \) guided by local gradients of probability mass. When you ask the same question twice, you initiate two trajectories \( \{h_t^{(1)}\}, \{h_t^{(2)}\} \) that both satisfy</p>
+        <p>However, the variability goes deeper than randomness. The underlying mechanism of an LLM’s “thought process” is an ensemble of representational patterns that coexist in <em>superposition</em>. Within the model’s internal vector space, multiple linguistic associations are encoded simultaneously. The embedding space can be imagined as a manifold \( \mathcal{M} \subset \mathbb{R}^d \), where each point represents a latent semantic configuration. The act of generation corresponds to a stochastic traversal across \( \mathcal{M} \) guided by local gradients of probability mass. When you ask the same question twice, you initiate two trajectories \( \{h_t^{(1)}\}, \{h_t^{(2)}\} \) that both satisfy</p>
 
         <div>
           <p style="text-align:center; margin: 0.6rem 0;">
@@ -280,18 +280,18 @@
 
         <p>From a deeper perspective, this phenomenon points to an important truth about language understanding itself. Human conversation, too, is never perfectly reproducible. The words we choose in response to the same query vary with mood, memory salience, framing, and attention. LLMs, though artificial, mirror this variability because they emulate the statistical structure of human language. Their multiplicity of replies reveals not instability, but richness: the ability to navigate multiple valid interpretations of meaning.</p>
 
-        <p>Nevertheless, this diversity raises questions about trust and epistemic reliability. If the same model can generate conflicting answers, how should we treat its statements as knowledge claims? The key lies in understanding that LLMs are probability engines—mechanisms for producing linguistically coherent <em>hypotheses</em> based on textual evidence. Their outputs represent a <em>distribution of possible answers</em> rather than definitive truths. The variation is thus a window into the uncertainty inherent in the training data and in language itself.</p>
+        <p>Nevertheless, this diversity does raise some questions about reliability. If the same model can generate conflicting answers, how should we treat its statements as knowledge claims? The key lies in understanding that LLMs are probability engines—mechanisms for producing linguistically coherent <em>hypotheses</em> based on textual evidence , as we have pointed out in the beginning. Their outputs represent a <em>distribution of possible answers</em> rather than definitive truths. The variation is thus a window into the uncertainty inherent in the training data and in language itself.</p>
 
-        <p>In the long view, this variability has profound implications. It suggests that the future of AI interaction will not be about fixing models to yield one “true” answer, but about <em>managing distributions</em> of possible responses—sampling from them intelligently, conditioning them with context, and aligning them with human epistemic values or factual baselines. The goal is not to eliminate diversity but to channel it toward useful expression, much like a scientist learns to interpret error bars rather than demand a single measurement.</p>
+        <p>In the long view, this variability has profound implications. It suggests that the future of AI interaction will not be about fixing models to yield one “true” answer, but about <em>managing distributions</em> of possible responses—sampling from them intelligently, conditioning them with context, and aligning them with human epistemic values or factual baselines. The goal is to channel diversity toward useful expression, much like a scientist learns to interpret error bars rather than demand a single measurement.</p>
 
-        <p>Ultimately, the fact that large language models reply differently to the same question is not a flaw but a reflection of their architecture’s fundamental design: a probabilistic mirror of linguistic possibility. Their multiplicity is both their challenge and their strength—a reminder that intelligence, artificial or human, is less about repetition and more about the capacity to navigate uncertainty in the space of meaning.</p>
+        <p>Ultimately, the fact that large language models reply differently to the same question is a reflection of their architecture’s fundamental design: a probabilistic mirror of linguistic possibility. Their multiplicity is both their challenge and their strength—a reminder that intelligence, artificial or human, is less about repetition and more about the capacity to navigate uncertainty in the space of meaning.</p>
 
         <section class="references" aria-label="References">
           <h2 style="margin-top:1.2rem;">References</h2>
           <ol>
             <li><a href="https://arxiv.org/abs/1706.03762" style="color: inherit; text-decoration: none;">Vaswani, A. et al. (2017). <em>Attention Is All You Need.</em> Advances in Neural Information Processing Systems.</a></li>
             <li><a href="https://arxiv.org/abs/2005.14165" style="color: inherit; text-decoration: none;">Brown, T. et al. (2020). <em>Language Models are Few-Shot Learners.</em> arXiv:2005.14165.</a></li>
-            <li><a href="https://cdn.openai.com/papers/language_models_are_unsupervised_multitask_learners.pdf" style="color: inherit; text-decoration: none;">Radford, A. et al. (2019). <em>Language Models are Unsupervised Multitask Learners.</em> OpenAI Technical Report.</a></li>
+            <li><a href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" style="color: inherit; text-decoration: none;">Radford, A. et al. (2019). <em>Language Models are Unsupervised Multitask Learners.</em> OpenAI Technical Report.</a></li>
             <li><a href="http://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf" style="color: inherit; text-decoration: none;">Bengio, Y., Ducharme, R., Vincent, P., & Jauvin, C. (2003). <em>A Neural Probabilistic Language Model.</em> Journal of Machine Learning Research, 3, 1137–1155.</a></li>
             <li><a href="https://arxiv.org/abs/2303.12712" style="color: inherit; text-decoration: none;">Bubeck, S. et al. (2023). <em>Sparks of Artificial General Intelligence: Early Experiments with GPT-4.</em> arXiv:2303.12712.</a></li>
             <li><a href="https://www.bioinf.jku.at/publications/older/2604.pdf" style="color: inherit; text-decoration: none;">Hochreiter, S., & Schmidhuber, J. (1997). <em>Long Short-Term Memory.</em> Neural Computation.</a></li>

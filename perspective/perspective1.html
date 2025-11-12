@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="title" content="Why Large Language Models Give Different Answers to the Same Question" />
+  <meta name="author" content="Hopotta" />
+  <meta name="date" content="November 12, 2025" />
+  <meta name="reading-time" content="8 min" />
+  <title>Why Large Language Models Give Different Answers to the Same Question</title>
+  <link rel="stylesheet" href="../assets/css/site1.css" />
+  <link rel="icon" href="../favicon.png" type="image/png" />
+  <!-- MathJax for rendering inline and display LaTeX -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('../header.html')
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById('site-header').innerHTML = html;
+        });
+    });
+  </script>
+
+  <main>
+    <div class="article-container">
+      <h1 class="article-title" style="font-family: 'Merriweather';">Why Large Language Models Give Different Answers to the Same Question</h1>
+
+      <div class="article-info">
+        <span class="meta-item"><span class="meta-icon"></span> Date: Nov 12, 2025</span>
+        <span class="meta-sep" aria-hidden="true"></span>
+        <span class="meta-item"><span class="meta-icon"></span> Estimated Reading Time: 10 min</span>
+        <span class="meta-sep" aria-hidden="true"></span>
+        <span class="meta-item"><span class="meta-icon"></span> Author: Hopotta</span>
+      </div>
+
+      <div class="article-content">
+
+        <p>One of the most common observations people make when interacting with large language models (LLMs) is that asking the same question twice can yield surprisingly different responses. Sometimes the difference is superficial—a reworded sentence, a different metaphor. Other times it is substantial—altered reasoning, varying facts, or even opposing conclusions. This phenomenon is not simply a quirk of randomness or a lack of precision; rather, it is rooted in the probabilistic and distributed nature of how these models represent and generate language.</p>
+
+        <p>At its core, an LLM is not a deterministic rule-based system. It is a probabilistic generator that, given a prompt, samples from a high-dimensional distribution of possible continuations. Every token <em>t<sub>i</sub></em> the model produces is selected from</p>
+
+        <div>
+          <p style="text-align:center; margin: 0.6rem 0;">
+            \[
+              P(t_i \mid t_{<i}, \theta) = \frac{\exp (z_i / \tau)}{\sum_j \exp (z_j / \tau)},
+            \]
+          </p>
+        </div>
+
+        <p>where \(z_i = f_\theta(h_{i-1})_i\) denotes the <em>logit</em>—a pre-softmax score representing the model’s internal confidence that token \(t_i\) is appropriate given context \(t_{<i}\), parameters \(\theta\), and temperature \(\tau\). The softmax converts these logits into probabilities.</p>
+
+        <p>Each generation step thus constitutes a stochastic draw from \(P(t_i \mid t_{<i})\). A single token’s choice can alter the conditional distribution for the next token dramatically, since the subsequent hidden state \(h_i\) depends nonlinearly on the entire prefix. Mathematically, this cascading sensitivity can be seen from the chain rule:</p>
+
+        <div>
+          <p style="text-align:center; margin: 0.6rem 0;">
+            \[
+              P(t_1, \dots, t_n) = \prod_{i=1}^{n} P(t_i \mid t_{<i}, \theta),
+            \]
+          </p>
+        </div>
+
+        <p>which shows that a small perturbation at early steps exponentially affects later probabilities. Consequently, two outputs drawn from the same \(P(\cdot \mid x, \theta)\) need not coincide—even if their initial conditions differ by a single stochastic event.</p>
+
+        <p>To make this intuition clearer, consider that each token’s logits are computed through an affine transformation of the hidden state:</p>
+
+        <div>
+          <p style="text-align:center; margin: 0.6rem 0;">
+            \[
+              z_i = W_o h_{i-1} + b_o,
+            \]
+          </p>
+        </div>
+
+        <p>where \(h_{i-1} = \text{Transformer}(t_{<i})\). Because \(h_{i-1}\) itself is a nonlinear function of prior sampled tokens, a minute difference in one sampled word alters the entire attention landscape. The attention mechanism, defined as</p>
+
+        <div>
+          <p style="text-align:center; margin: 0.6rem 0;">
+            \[
+              \text{Attention}(Q,K,V) = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right)V,
+            \]
+          </p>
+        </div>
+
+        <p>is sensitive to such perturbations: even a small change in a single query vector \(Q\) or key vector \(K\) can shift the softmax weights nonlinearly, changing which parts of the context the model “looks at.” Thus, what appears to be a minor lexical variation is amplified through recursive attention transformations, resulting in distinct global representations.</p>
+
+        <p>This process inherently admits variation. The temperature parameter \(\tau\) controls how deterministically the model samples. When \(\tau \to 0\), the model converges to greedy decoding (always choosing the maximum-probability token), whereas larger \(\tau\) flattens the distribution and increases entropy:</p>
+
+        <div>
+          <p style="text-align:center; margin: 0.6rem 0;">
+            \[
+              H(P_\tau) = -\sum_i P_\tau(t_i) \log P_\tau(t_i),
+            \]
+          </p>
+        </div>
+
+        <p>where \(H(P_\tau)\) grows monotonically with \(\tau\). Higher entropy corresponds to greater lexical diversity. Even with a low temperature, the non-determinism introduced by floating-point arithmetic and sampling noise can create <em>branching trajectories</em> in the generation process, much like chaos in dynamical systems where infinitesimal perturbations cause macroscopic divergence.</p>
+
+        <p>However, the variability goes deeper than randomness. The underlying mechanism of an LLM’s “thought process” is not a singular line of reasoning but an ensemble of representational patterns that coexist in <em>superposition</em>. Within the model’s internal vector space, multiple linguistic associations are encoded simultaneously. The embedding space can be imagined as a manifold \( \mathcal{M} \subset \mathbb{R}^d \), where each point represents a latent semantic configuration. The act of generation corresponds to a stochastic traversal across \( \mathcal{M} \) guided by local gradients of probability mass. When you ask the same question twice, you initiate two trajectories \( \{h_t^{(1)}\}, \{h_t^{(2)}\} \) that both satisfy</p>
+
+        <div>
+          <p style="text-align:center; margin: 0.6rem 0;">
+            \[
+              h_{t+1}^{(k)} = F_\theta(h_t^{(k)}, t_t^{(k)}),
+            \]
+          </p>
+        </div>
+
+        <p>but diverge because the stochastic term in sampling \(t_t^{(k)}\) injects slight differences at each iteration. In expectation, these trajectories remain near one another, but in realization they may land in different “basins of attraction” of meaning—leading to distinct yet coherent outputs.</p>
+
+        <p>There is also the issue of contextual sensitivity. LLMs do not truly “recall” prior facts in a stable database-like sense. Instead, their responses are <em>reconstructed</em> dynamically from distributed representations. The same question might evoke slightly different activations depending on small context perturbations. In representation terms, let the prompt embedding be \(x\). The network’s internal computation \(f_\theta(x)\) is highly non-linear, so that even infinitesimal differences \(\delta x\) can yield significantly different outputs if</p>
+
+        <div>
+          <p style="text-align:center; margin: 0.6rem 0;">
+            \[
+              \|\nabla_x f_\theta(x)\| \cdot \|\delta x\| \gg 0.
+            \]
+          </p>
+        </div>
+
+        <p>This local sensitivity means that the model’s effective behavior can depend on minute textual or positional context, much like how neural activations in biological systems depend on transient firing patterns rather than static symbols.</p>
+
+        <p>From a deeper perspective, this phenomenon points to an important truth about language understanding itself. Human conversation, too, is never perfectly reproducible. The words we choose in response to the same query vary with mood, memory salience, framing, and attention. LLMs, though artificial, mirror this variability because they emulate the statistical structure of human language. Their multiplicity of replies reveals not instability, but richness: the ability to navigate multiple valid interpretations of meaning.</p>
+
+        <p>Nevertheless, this diversity raises questions about trust and epistemic reliability. If the same model can generate conflicting answers, how should we treat its statements as knowledge claims? The key lies in understanding that LLMs are not knowledge authorities but probability engines—mechanisms for producing linguistically coherent <em>hypotheses</em> based on textual evidence. Their outputs represent a <em>distribution of possible answers</em> rather than definitive truths. The variation is thus a window into the uncertainty inherent in the training data and in language itself.</p>
+
+        <p>In the long view, this variability has profound implications. It suggests that the future of AI interaction will not be about fixing models to yield one “true” answer, but about <em>managing distributions</em> of possible responses—sampling from them intelligently, conditioning them with context, and aligning them with human epistemic values or factual baselines. The goal is not to eliminate diversity but to channel it toward useful expression, much like a scientist learns to interpret error bars rather than demand a single measurement.</p>
+
+        <p>Ultimately, the fact that large language models reply differently to the same question is not a flaw but a reflection of their architecture’s fundamental design: a probabilistic mirror of linguistic possibility. Their multiplicity is both their challenge and their strength—a reminder that intelligence, artificial or human, is less about repetition and more about the capacity to navigate uncertainty in the space of meaning.</p>
+
+        <section class="references" aria-label="References">
+          <h2 style="margin-top:1.2rem;">References</h2>
+          <ol>
+            <li>Vaswani, A. et al. (2017). <em>Attention Is All You Need.</em> Advances in Neural Information Processing Systems.</li>
+            <li>Brown, T. et al. (2020). <em>Language Models are Few-Shot Learners.</em> arXiv:2005.14165.</li>
+            <li>Radford, A. et al. (2019). <em>Language Models are Unsupervised Multitask Learners.</em> OpenAI Technical Report.</li>
+            <li>Bengio, Y., Ducharme, R., Vincent, P., & Jauvin, C. (2003). <em>A Neural Probabilistic Language Model.</em> Journal of Machine Learning Research, 3, 1137–1155.</li>
+            <li>Bubeck, S. et al. (2023). <em>Sparks of Artificial General Intelligence: Early Experiments with GPT-4.</em> arXiv:2303.12712.</li>
+            <li>Hochreiter, S., & Schmidhuber, J. (1997). <em>Long Short-Term Memory.</em> Neural Computation.</li>
+            <li>Hao, K. (2023). <em>Large Language Models Are Probabilistic Mirrors of Human Discourse.</em> MIT Technology Review.</li>
+          </ol>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Technical Blog. All rights reserved.</p>
+  </footer>
+</body>
+</html>

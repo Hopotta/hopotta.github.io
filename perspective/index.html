@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hopotta's Log</title>
-  <link rel="icon" href="/favicon.png" type="image/png" />
+  <title>Paradox - Hopotta's Log</title>
+  <link rel="icon" href="../favicon.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      margin: 0;
-      padding-top: 3rem; 
+    html, body {
       font-family: -apple-system, 'Inter', system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      margin: 0;
+      padding-top: 3rem; 
       background-color: #ffffff;
       color: #333;
       display: flex;
@@ -113,12 +114,10 @@
   <script>
     async function loadPosts() {
       const posts = [
-        { path: './posts/posts1.html' },
-        { path: './posts/posts2.html' },
-        { path: './posts/posts3.html' },
-        { path: './posts/posts4.html' },
-        { path: './posts/posts5.html' }
-        // Add more post paths here
+        { path: './perspective1.html' },
+        { path: './perspective2.html' },
+        { path: './perspective3.html' },
+        { path: './perspective4.html' },
       ];
 
       const container = document.getElementById('post-container');
@@ -129,8 +128,8 @@
         const doc = parser.parseFromString(text, 'text/html');
 
         const title = doc.querySelector('meta[name="title"]').content;
-        const contentElement = doc.querySelector('div.article-content'); 
-        const content = contentElement ? contentElement.textContent.trim() : ''; 
+        const contentElement = doc.querySelector('div.article-content');
+        const content = contentElement ? contentElement.textContent.trim() : '';
         const excerpt = content ? (content.length > 200 ? content.substring(0, 200).trim() + '...' : content.trim()) : 'No content available.';
         const author = doc.querySelector('meta[name="author"]').content;
         const date = doc.querySelector('meta[name="date"]').content;
@@ -160,16 +159,15 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
     gtag('config', 'G-ZL808HX9MQ');
   </script>
-  
 </head>
+
 <body>
   <div id="site-header"></div>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      fetch('header.html')
+      fetch('../header.html')
         .then(r => r.text())
         .then(html => {
           document.getElementById('site-header').innerHTML = html;
@@ -179,16 +177,14 @@
 
   <main>
     <h1>
-      👋Welcome To Hopotta's Log! 
+      Welcome To Perspective
     </h1>
-    <div id="welcome-message">Dive into insightful posts and updates. Here, we delve into the latest research, thought-provoking opinions, 
-      and engaging stories that shape our world. Whether you're a seasoned professional or just curious, you'll find something to inspire and challenge you. 
-      Join us as we explore the depths of knowledge and discovery.
-</div>
+    <div id="welcome-message">
+      Welcome to Perspective — a space where we pause from the immediacy of code and computation to examine the underlying principles shaping intelligent systems. 
+      Here, each essay looks beneath the surface of algorithms and architectures to uncover how technology reflects deeper ideas about language, reasoning, and uncertainty
+    </div>
 
-    <!-- Post Cards -->
     <div id="post-container">
-      <!-- Dynamic post cards will be inserted here -->
     </div>
   </main>
 

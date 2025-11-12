@@ -10,7 +10,6 @@
   <title>Why Large Language Models Give Different Answers to the Same Question</title>
   <link rel="stylesheet" href="../assets/css/site1.css" />
   <link rel="icon" href="../favicon.png" type="image/png" />
-  <!-- MathJax Configuration -->
   <script>
     window.MathJax = {
       tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
@@ -31,9 +30,69 @@
     });
   </script>
 
+<style>
+  .two-branch-box {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background: transparent;
+  }
+
+  .two-branch-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .branch {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .branch .q-bubble {
+    background: rgba(15,23,42,0.04);
+    color: #0f172a;
+    padding: 0.5rem 0.6rem;
+    border-radius: 12px;
+    max-width: 72%;
+    margin-left: auto;
+    box-sizing: border-box;
+    word-break: break-word;
+    font-family: Calibri, sans-serif;
+  }
+
+  .branch .a-bubble {
+    background: #ffffff;
+    color: #0f172a;
+    padding: 0.5rem 0.6rem;
+    border-radius: 10px;
+    max-width: 78%;
+    margin-right: auto;
+    box-sizing: border-box;
+    border: 1px solid rgba(150, 150, 150, 0.04);
+    word-break: break-word;
+    font-family: Calibri, sans-serif;
+  }
+
+  .branch.left .q-bubble { max-width: 84%; }
+  .branch.left .a-bubble { max-width: 85%; }
+  .branch.right .q-bubble { max-width: 84%; }
+  .branch.right .a-bubble { max-width: 85%; }
+
+  .avatar-wrap { display:flex; align-items:center; gap:0.6rem; }
+
+  @media (max-width: 780px) {
+    .two-branch-grid { grid-template-columns: 1fr; }
+    .branch .q-bubble { max-width: 88%; }
+    .branch .a-bubble { max-width: 92%; }
+  }
+</style>
   <main>
     <div class="article-container">
-      <h1 class="article-title">Why Large Language Models Give Different Answers to the Same Question</h1>
+      <h1 class="article-title" style="font-family: 'Merriweather';">Why Large Language Models Give Different Answers to the Same Question</h1>
 
       <div class="article-info">
         <span class="meta-item">Date: Nov 12, 2025</span>
@@ -46,6 +105,96 @@
       <div class="article-content">
 
         <p>One of the most common observations people make when interacting with large language models (LLMs) is that asking the same question twice can yield surprisingly different responses. Sometimes the difference is superficial—a reworded sentence, a different metaphor. Other times it is substantial—altered reasoning, varying facts, or even opposing conclusions. This phenomenon is not simply a quirk of randomness or a lack of precision; rather, it is rooted in the probabilistic and distributed nature of how these models represent and generate language.</p>
+
+        <div class="style-scrollbars h-full p-sm @md:p-md @md:max-h-[40.625rem] overflow-auto bg-primary-4 rounded-md max-h-[28rem] w-full two-branch-box" role="region" aria-label="Two-branch dialogue box">
+          <div class="ms-sm @md:ms-xl">
+            <div class="two-branch-grid">
+              <div class="branch left">
+                <div class="text-p1">
+                  <div class="gap-4xs flex flex-col flex-wrap">
+                    <div class="flex max-w-full flex-col bg-primary-4 p-2xs justify-end rounded-lg">
+                      <div class="max-w-full">
+                        <div class="text-p1 [&amp;_p]:mb-xs prose message-text max-w-full [overflow-wrap:break-word] [&amp;_ol]:list-inside last:[&amp;_p]:mb-0">
+                          <p class="mb-sm last:mb-0 q-bubble" aria-label="User question branch left"> Why did the model give two different answers to the same question?</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-md me-sm @md:me-xl">
+                  <div class="gap-5xs @md:gap-3xs flex flex-row">
+                    <div class="flex">
+                      <div>
+                        <div class="w-[2rem] h-[2rem] bg-secondary-100 border-stroke-primary-4 flex items-center justify-center rounded-full border dark:border-0" aria-hidden="true">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 156 154" fill="none">
+                            <path d="M59.7325 56.1915V41.6219C59.7325 40.3948 60.1929 39.4741 61.266 38.8613L90.5592 21.9915C94.5469 19.6912 99.3013 18.6181 104.208 18.6181C122.612 18.6181 134.268 32.8813 134.268 48.0637C134.268 49.1369 134.268 50.364 134.114 51.5911L103.748 33.8005C101.908 32.7274 100.067 32.7274 98.2267 33.8005L59.7325 56.1915ZM128.133 112.937V78.1222C128.133 75.9745 127.212 74.441 125.372 73.3678L86.878 50.9768L99.4538 43.7682C100.527 43.1554 101.448 43.1554 102.521 43.7682L131.814 60.6381C140.25 65.5464 145.923 75.9745 145.923 86.0961C145.923 97.7512 139.023 108.487 128.133 112.935V112.937ZM50.6841 82.2638L38.1083 74.9028C37.0351 74.29 36.5748 73.3693 36.5748 72.1422V38.4025C36.5748 21.9929 49.1506 9.5696 66.1744 9.5696C72.6162 9.5696 78.5962 11.7174 83.6585 15.5511L53.4461 33.0352C51.6062 34.1084 50.6855 35.6419 50.6855 37.7897V82.2653L50.6841 82.2638ZM77.7533 97.9066L59.7325 87.785V66.3146L77.7533 56.193L95.7725 66.3146V87.785L77.7533 97.9066ZM89.3321 144.53C82.8903 144.53 76.9103 142.382 71.848 138.549L102.06 121.064C103.9 119.991 104.821 118.458 104.821 116.31V71.8343L117.551 79.1954C118.624 79.8082 119.084 80.7289 119.084 81.956V115.696C119.084 132.105 106.354 144.529 89.3321 144.529V144.53ZM52.9843 110.33L23.6911 93.4601C15.2554 88.5517 9.58181 78.1237 9.58181 68.0021C9.58181 56.193 16.6365 45.611 27.5248 41.163V76.1299C27.5248 78.2776 28.4455 79.8111 30.2854 80.8843L68.6271 103.121L56.0513 110.33C54.9781 110.943 54.0574 110.943 52.9843 110.33ZM51.2983 135.482C33.9681 135.482 21.2384 122.445 21.2384 106.342C21.2384 105.115 21.3923 103.888 21.5448 102.661L51.7572 120.145C53.5971 121.218 55.4385 121.218 57.2784 120.145L95.7725 97.9081V112.478C95.7725 113.705 95.3122 114.625 94.239 115.238L64.9458 132.108C60.9582 134.408 56.2037 135.482 51.2969 135.482H51.2983ZM89.3321 153.731C107.889 153.731 123.378 140.542 126.907 123.058C144.083 118.61 155.126 102.507 155.126 86.0976C155.126 75.3617 150.525 64.9336 142.243 57.4186C143.01 54.1977 143.471 50.9768 143.471 47.7573C143.471 25.8267 125.68 9.41567 105.129 9.41567C100.989 9.41567 97.0011 10.0285 93.0134 11.4095C86.1112 4.66126 76.6024 0.367188 66.1744 0.367188C47.6171 0.367188 32.1282 13.5558 28.5994 31.0399C11.4232 35.4879 0.380859 51.5911 0.380859 68.0006C0.380859 78.7365 4.98133 89.1645 13.2631 96.6795C12.4963 99.9004 12.036 103.121 12.036 106.341C12.036 128.271 29.8265 144.682 50.3777 144.682C54.5178 144.682 58.5055 144.07 62.4931 142.689C69.3938 149.437 78.9026 153.731 89.3321 153.731Z" fill="currentColor"></path>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="w-full">
+                      <div class="text-p1">
+                        <div class="gap-4xs flex flex-col flex-wrap">
+                          <div class="flex max-w-full flex-col">
+                            <div class="max-w-full">
+                              <div class="text-p1 [&amp;_p]:mb-xs prose message-text max-w-full [overflow-wrap:break-word] [&amp;_ol]:list-inside last:[&amp;_p]:mb-0">
+                                <p class="mb-sm last:mb-0 a-bubble" aria-label="GPT answer branch left"> Because generation is a stochastic process: the model samples tokens from a conditional probability distribution at each step. Early sampling differences change subsequent hidden states and attention weights, which cascade into distinct continuations. Temperature, tokenization subtleties, and floating-point or decoding choices also influence the final output.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="branch right">
+                <div class="text-p1">
+                  <div class="gap-4xs flex flex-col flex-wrap">
+                    <div class="flex max-w-full flex-col bg-primary-4 p-2xs justify-end rounded-lg">
+                      <div class="max-w-full">
+                        <div class="text-p1 [&amp;_p]:mb-xs prose message-text max-w-full [overflow-wrap:break-word] [&amp;_ol]:list-inside last:[&amp;_p]:mb-0">
+                          <p class="mb-sm last:mb-0 q-bubble" aria-label="User question branch right"> Why did the model give two different answers to the same question?</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-md me-sm @md:me-xl">
+                  <div class="gap-5xs @md:gap-3xs flex flex-row">
+                    <div class="flex">
+                      <div>
+                        <div class="w-[2rem] h-[2rem] bg-secondary-100 border-stroke-primary-4 flex items-center justify-center rounded-full border dark:border-0" aria-hidden="true">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 156 154" fill="none">
+                            <path d="M59.7325 56.1915V41.6219C59.7325 40.3948 60.1929 39.4741 61.266 38.8613L90.5592 21.9915C94.5469 19.6912 99.3013 18.6181 104.208 18.6181C122.612 18.6181 134.268 32.8813 134.268 48.0637C134.268 49.1369 134.268 50.364 134.114 51.5911L103.748 33.8005C101.908 32.7274 100.067 32.7274 98.2267 33.8005L59.7325 56.1915ZM128.133 112.937V78.1222C128.133 75.9745 127.212 74.441 125.372 73.3678L86.878 50.9768L99.4538 43.7682C100.527 43.1554 101.448 43.1554 102.521 43.7682L131.814 60.6381C140.25 65.5464 145.923 75.9745 145.923 86.0961C145.923 97.7512 139.023 108.487 128.133 112.935V112.937ZM50.6841 82.2638L38.1083 74.9028C37.0351 74.29 36.5748 73.3693 36.5748 72.1422V38.4025C36.5748 21.9929 49.1506 9.5696 66.1744 9.5696C72.6162 9.5696 78.5962 11.7174 83.6585 15.5511L53.4461 33.0352C51.6062 34.1084 50.6855 35.6419 50.6855 37.7897V82.2653L50.6841 82.2638ZM77.7533 97.9066L59.7325 87.785V66.3146L77.7533 56.193L95.7725 66.3146V87.785L77.7533 97.9066ZM89.3321 144.53C82.8903 144.53 76.9103 142.382 71.848 138.549L102.06 121.064C103.9 119.991 104.821 118.458 104.821 116.31V71.8343L117.551 79.1954C118.624 79.8082 119.084 80.7289 119.084 81.956V115.696C119.084 132.105 106.354 144.529 89.3321 144.529V144.53ZM52.9843 110.33L23.6911 93.4601C15.2554 88.5517 9.58181 78.1237 9.58181 68.0021C9.58181 56.193 16.6365 45.611 27.5248 41.163V76.1299C27.5248 78.2776 28.4455 79.8111 30.2854 80.8843L68.6271 103.121L56.0513 110.33C54.9781 110.943 54.0574 110.943 52.9843 110.33ZM51.2983 135.482C33.9681 135.482 21.2384 122.445 21.2384 106.342C21.2384 105.115 21.3923 103.888 21.5448 102.661L51.7572 120.145C53.5971 121.218 55.4385 121.218 57.2784 120.145L95.7725 97.9081V112.478C95.7725 113.705 95.3122 114.625 94.239 115.238L64.9458 132.108C60.9582 134.408 56.2037 135.482 51.2969 135.482H51.2983ZM89.3321 153.731C107.889 153.731 123.378 140.542 126.907 123.058C144.083 118.61 155.126 102.507 155.126 86.0976C155.126 75.3617 150.525 64.9336 142.243 57.4186C143.01 54.1977 143.471 50.9768 143.471 47.7573C143.471 25.8267 125.68 9.41567 105.129 9.41567C100.989 9.41567 97.0011 10.0285 93.0134 11.4095C86.1112 4.66126 76.6024 0.367188 66.1744 0.367188C47.6171 0.367188 32.1282 13.5558 28.5994 31.0399C11.4232 35.4879 0.380859 51.5911 0.380859 68.0006C0.380859 78.7365 4.98133 89.1645 13.2631 96.6795C12.4963 99.9004 12.036 103.121 12.036 106.341C12.036 128.271 29.8265 144.682 50.3777 144.682C54.5178 144.682 58.5055 144.07 62.4931 142.689C69.3938 149.437 78.9026 153.731 89.3321 153.731Z" fill="currentColor"></path>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="w-full">
+                      <div class="text-p1">
+                        <div class="gap-4xs flex flex-col flex-wrap">
+                          <div class="flex max-w-full flex-col">
+                            <div class="max-w-full">
+                              <div class="text-p1 [&amp;_p]:mb-xs prose message-text max-w-full [overflow-wrap:break-word] [&amp;_ol]:list-inside last:[&amp;_p]:mb-0">
+                                <p class="mb-sm last:mb-0 a-bubble" aria-label="GPT answer branch right"> Because the model contains many competing internal representations. Each run collapses a different path through the latent manifold: slight context or sampling noise steers the trajectory toward an alternative, valid explanation. In other words, diversity is intrinsic to the model’s probabilistic representation of language.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <p>At its core, an LLM is not a deterministic rule-based system. It is a probabilistic generator that, given a prompt, samples from a high-dimensional distribution of possible continuations. Every token <em>t<sub>i</sub></em> the model produces is selected from</p>
 
@@ -131,7 +280,7 @@
 
         <p>From a deeper perspective, this phenomenon points to an important truth about language understanding itself. Human conversation, too, is never perfectly reproducible. The words we choose in response to the same query vary with mood, memory salience, framing, and attention. LLMs, though artificial, mirror this variability because they emulate the statistical structure of human language. Their multiplicity of replies reveals not instability, but richness: the ability to navigate multiple valid interpretations of meaning.</p>
 
-        <p>Nevertheless, this diversity raises questions about trust and epistemic reliability. If the same model can generate conflicting answers, how should we treat its statements as knowledge claims? The key lies in understanding that LLMs are not knowledge authorities but probability engines—mechanisms for producing linguistically coherent <em>hypotheses</em> based on textual evidence. Their outputs represent a <em>distribution of possible answers</em> rather than definitive truths. The variation is thus a window into the uncertainty inherent in the training data and in language itself.</p>
+        <p>Nevertheless, this diversity raises questions about trust and epistemic reliability. If the same model can generate conflicting answers, how should we treat its statements as knowledge claims? The key lies in understanding that LLMs are probability engines—mechanisms for producing linguistically coherent <em>hypotheses</em> based on textual evidence. Their outputs represent a <em>distribution of possible answers</em> rather than definitive truths. The variation is thus a window into the uncertainty inherent in the training data and in language itself.</p>
 
         <p>In the long view, this variability has profound implications. It suggests that the future of AI interaction will not be about fixing models to yield one “true” answer, but about <em>managing distributions</em> of possible responses—sampling from them intelligently, conditioning them with context, and aligning them with human epistemic values or factual baselines. The goal is not to eliminate diversity but to channel it toward useful expression, much like a scientist learns to interpret error bars rather than demand a single measurement.</p>
 
@@ -146,11 +295,8 @@
             <li><a href="http://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf" style="color: inherit; text-decoration: none;">Bengio, Y., Ducharme, R., Vincent, P., & Jauvin, C. (2003). <em>A Neural Probabilistic Language Model.</em> Journal of Machine Learning Research, 3, 1137–1155.</a></li>
             <li><a href="https://arxiv.org/abs/2303.12712" style="color: inherit; text-decoration: none;">Bubeck, S. et al. (2023). <em>Sparks of Artificial General Intelligence: Early Experiments with GPT-4.</em> arXiv:2303.12712.</a></li>
             <li><a href="https://www.bioinf.jku.at/publications/older/2604.pdf" style="color: inherit; text-decoration: none;">Hochreiter, S., & Schmidhuber, J. (1997). <em>Long Short-Term Memory.</em> Neural Computation.</a></li>
-            <li><a href="https://www.technologyreview.com/2023/03/29/1068784/large-language-models-are-probabilistic-mirrors-of-human-discourse/" style="color: inherit; text-decoration: none;">Hao, K. (2023). <em>Large Language Models Are Probabilistic Mirrors of Human Discourse.</em> MIT Technology Review.</a></li>
-
           </ol>
         </section>
-
       </div>
     </div>
   </main>

@@ -1,2 +1,2 @@
-# My 'hopotta.github.io' WebPage Design
-Click [here](https://hopotta.github.io) to see.
+# Welcome for visiting and critisizing
+Click [here](https://hopotta.github.io) to check.

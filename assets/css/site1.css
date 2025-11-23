@@ -64,6 +64,7 @@ main > h1 {
   font-size: 0.9rem;
   color: #666;
   margin-bottom: 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, Georgia, 'Georgia Pro', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .article-content {

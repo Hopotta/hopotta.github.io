@@ -4,12 +4,13 @@
 **Version:** 1.5.2  
 
 ## 1. Header Style Update  
-- **From rounded rectangle to rectangle**: considering rounded one may not include areas beyond it, altered into `top: 0`.    
-- Adjusted related parametres to adapt to user experience.
+- **From rounded rectangle to rectangle**: considering rounded one may not include areas beyond it, altered into `top: 0`.
+- Adapted a brandnew `.container` to include the header.
+- Adjusted related parametres to adapt to user experience and reduce code redundancy.
 
-## 2. Articles Showing Logic Altered  
-- **Improved reading experience**: formerly `article container` was sequential showing, altered into reverse.  
-- More convenient to check my updated articles.  
+## 2. Adjusted `fontfamily` 
+- **Improved font experience**: adjust font in `perspective` articles.  
+- Adapted 'Crimson Pro' instead of formerly first choice Helvetica or Calibri from fonts.googleapis.com.  
 
 ## 3. Deleted CodeSpace Section
 - **Added a `perspective` section as substitude of `codespace`** considering actual requirements
@@ -19,6 +20,7 @@
 
 ## Next Steps  
 - ***FORECAST***: **Log Annual Report 2025** will be available in the next week.
+- Considering improving user experience from altering article showing logic into reverse. 
 - Populate the `paradox` section with content.  
 - Continue refining site typography and consistency.        
 - Consider extracting the footer into a shared component (`footer.html`) for consistent branding.  

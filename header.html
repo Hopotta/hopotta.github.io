@@ -10,183 +10,137 @@
 </header>
 
 <style>
+  :root {
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(0, 0, 0, 0.06);
+    --glass-highlight: rgba(255, 255, 255, 0.8);
+    --nav-hover-bg: rgba(0, 0, 0, 0.05);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --glass-bg: rgba(20, 20, 20, 0.70);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-highlight: rgba(255, 255, 255, 0.1);
+      --nav-hover-bg: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  body {
+    margin: 0;
+    min-height: 200vh;
+  }
+
   .container {
-  width: 100%;
-  max-width: 1250px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2rem;
-  box-sizing: border-box;
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    box-sizing: border-box;
+    height: 100%;
   }
 
   .glass {
     position: fixed;
     top: 0;
     left: 0;
-    transform: none;
     width: 100%;
-    max-width: none;
-    margin: 0;
-    border-radius: 0;
+    height: 60px;
     z-index: 999;
-    padding: 1rem 0;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(5px) saturate(180%);
-    -webkit-backdrop-filter: blur(5px) saturate(180%);
-    box-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.5),
-      0 8px 32px rgba(31, 38, 135, 0.2),
-      inset 0 4px 20px rgba(255, 255, 255, 0.3);
-    box-sizing: border-box;
-    overflow: hidden; 
-    position: fixed;  
-  }
-
-  .glass::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    padding: 1px;
-    border-radius: 1rem;
-    background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.2));
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    z-index: -2;
-  }
-
-  .glass::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: inherit;
-    filter: blur(8px) brightness(1.15);
-    z-index: -3;
-    pointer-events: none;
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 
+      inset 0 1px 0 0 var(--glass-highlight),
+      0 1px 0 0 var(--glass-border);
+      
+    transition: background-color 0.3s ease;
   }
 
   .glass h1 {
     margin: 0;
     color: #222;
-    font-size: clamp(1rem, 2.2vw, 1.25rem);
-    min-width: 0;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 1.25;
-    padding-top: 0.06em;
-    padding-bottom: 0.06em;
-    z-index: 1;
-    position: relative;
-    flex: 1 1 auto;
+    flex: 0 1 auto;
+    margin-right: 1rem;
+    @media (prefers-color-scheme: dark) {
+      color: #fff;
+    }
   }
 
   .glass nav {
     display: flex;
-    gap: 2rem;
-    flex: 0 1 auto; 
+    gap: 0.5rem;
     align-items: center;
-    z-index: 1;
-    position: relative;
-    max-width: 50%;
+    height: 100%;
   }
 
   .glass nav a {
     text-decoration: none;
     color: #444;
-    font-weight: 600;
-    transition: color 0.3s ease;
-
-    white-space: nowrap;
-    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
     
+    @media (prefers-color-scheme: dark) {
+      color: #ddd;
+    }
   }
 
   .glass nav a:hover {
     color: #000;
-    text-decoration: underline;
+    background-color: var(--nav-hover-bg);
+    
+    @media (prefers-color-scheme: dark) {
+      color: #fff;
+    }
   }
 
-  
   @media (max-width: 900px) {
-  .container {
-    padding: 0 1.5rem;
+    .container {
+      padding: 0 1.5rem;
+    }
   }
-  .glass nav {
-    gap: 1.2rem;
-    max-width: 60%;
-  }
-  .glass nav a {
-    font-size: 0.95rem;
-    padding: 0 2px;
-  }
-}
 
   @media (max-width: 700px) {
     .container {
-      padding: 0 1.2rem;
-    }
-    .glass {
-      padding: 0.8rem 0;
-    }
-    .glass h1 {
-      font-size: clamp(0.95rem, 4vw, 1.15rem);
-      flex: 0 1 auto;
-    }
-    .glass nav {
-      gap: 0.8rem;
-      max-width: 70%;
-      justify-content: flex-end;
-    }
-    .glass nav a {
-      font-size: 0.9rem;
-    }
-  }
-
-  @media (max-width: 520px) {
-    :root {
-      --header-vert-padding: 1rem; 
-    }
-
-    .container {
       padding: 0 1rem;
     }
-
-    .glass {
-      padding: var(--header-vert-padding) 0;
+    
+    .glass h1 {
+      font-size: 1.1rem;
     }
+    
+    .glass nav {
+      flex: 1;
+      justify-content: flex-end;
+      gap: 0.2rem;
+    }
+    
+    .glass nav a {
+      font-size: 0.9rem;
+      padding: 0.4rem 0.6rem;
+    }
+  }
 
+  @media (max-width: 380px) {
     .glass h1 {
       font-size: 1rem;
-      flex: 0 1 auto; 
-      margin-right: 10px;
+      max-width: 120px;
     }
-
-    .glass nav {
-      max-width: none;
-      flex: 1 1 auto;
-      justify-content: flex-end;
-      gap: 0.8rem;
-    }
-
     .glass nav a {
       font-size: 0.85rem;
+      padding: 0.3rem 0.5rem;
     }
   }
-
-  @media (max-width: 360px) {
-    .glass nav {
-      gap: 0.5rem;
-    }
-    .glass h1 {
-      font-size: 0.9rem;
-    }
-  }
-
 </style>

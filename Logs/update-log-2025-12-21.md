@@ -20,7 +20,8 @@
 
 ## Next Steps  
 - ***FORECAST***: **Log Annual Report 2025** will be available in the next week.
-- Considering improving user experience from altering article showing logic into reverse. 
+- Considering improving user experience from altering article showing logic into reverse.
+- Considering adapting dark mode. 
 - Populate the `paradox` section with content.  
 - Continue refining site typography and consistency.        
 - Consider extracting the footer into a shared component (`footer.html`) for consistent branding.  

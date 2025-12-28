@@ -1,3 +1,122 @@
+/* header style */
+:root {
+    --glass-bg: rgba(20, 20, 20, 0.70);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-highlight: rgba(255, 255, 255, 0.1);
+    --nav-hover-bg: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    margin: 0;
+    min-height: 200vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.glass {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 999;
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 
+        inset 0 1px 0 0 var(--glass-highlight),
+        0 1px 0 0 var(--glass-border);
+        
+    transition: background-color 0.3s ease;
+}
+
+.glass h1 {
+    margin: 0;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 0 1 auto;
+    margin-right: 0.5rem;
+    color: #fff;
+}
+
+.glass nav {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    height: 100%;
+}
+
+.glass nav a {
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    color: #ddd;
+}
+
+.glass nav a:hover {
+    color: #000;
+    background-color: var(--nav-hover-bg);
+
+    @media (prefers-color-scheme: dark) {
+        color: #fff;
+    }
+}
+
+@media (max-width: 900px) {
+.container {
+    padding: 0 1.5rem;
+}
+}
+
+@media (max-width: 700px) {
+.container {
+    padding: 0 1rem;
+}
+
+.glass h1 {
+    font-size: 1.1rem;
+}
+
+.glass nav {
+    flex: 1;
+    justify-content: flex-end;
+    gap: 0;
+}
+
+.glass nav a {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.3rem;
+}
+}
+
+@media (max-width: 380px) {
+.glass h1 {
+    font-size: 0.95rem;
+}
+.glass nav a {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.1rem;
+}
+}
+
+/*report style*/
 :root {
     --bg-color: #050505;
     --text-primary: #f0f0f0;
@@ -671,11 +790,11 @@ h1.title:hover {
 }
 
 #site-header .glass {
---glass-bg: rgba(20, 20, 20, 0.70) !important;
---glass-border: rgba(255, 255, 255, 0.1) !important;
---glass-highlight: rgba(255, 255, 255, 0.1) !important;
---nav-hover-bg: rgba(255, 255, 255, 0.1) !important;
-background-color: var(--glass-bg) !important;
+    --glass-bg: rgba(20, 20, 20, 0.70) !important;
+    --glass-border: rgba(255, 255, 255, 0.1) !important;
+    --glass-highlight: rgba(255, 255, 255, 0.1) !important;
+    --nav-hover-bg: rgba(255, 255, 255, 0.1) !important;
+    background-color: var(--glass-bg) !important;
 }
 
 #site-header .glass h1 {

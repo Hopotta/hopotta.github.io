@@ -1,0 +1,692 @@
+:root {
+    --bg-color: #050505;
+    --text-primary: #f0f0f0;
+    --text-secondary: #888888;
+    --accent: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --gradient-1: #4a90e2;
+    --gradient-2: #9013fe;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.report-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    width: 100%;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+.ambient-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 50% 50%, rgba(76, 29, 149, 0.15), transparent 70%);
+    z-index: -1;
+    animation: pulse 10s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.2); opacity: 0.8; }
+}
+
+.report-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+header.hero {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+}
+
+h1.title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 0.9;
+    margin: 0;
+    background: linear-gradient(to right, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 1; 
+    transform: translateY(30px);
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+                text-shadow 0.3s ease;
+    padding-bottom: 0.1em;
+}
+
+h1.title:hover {
+    transform: translateY(-10px);
+    text-shadow: 2px 0 rgba(255,255,255,0.4), -2px 0 rgba(136,136,136,0.4);
+}
+
+.subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: var(--text-secondary);
+    margin-top: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.5s;
+}
+
+.scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+    40% {transform: translateX(-50%) translateY(-10px);}
+    60% {transform: translateX(-50%) translateY(-5px);}
+}
+
+.grid-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 8rem 0;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(50px);
+    container-type: inline-size;
+    min-width: 0;
+    word-wrap: break-word;
+}
+
+.card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.card h2 {
+    font-size: clamp(0.9rem, 1rem + 1cqw, 1.25rem);
+    color: var(--text-secondary);
+    margin: 0 0 1.5rem 0;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: clamp(0.85rem, 8cqw, 1.2rem); 
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    line-height: 1.2;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.card h2 span {
+    font-size: clamp(0.6rem, 2cqw, 0.8rem) !important;
+    display: inline-block;
+}
+
+.card .metric {
+    font-weight: 700;
+    color: var(--accent);
+    margin: 0;
+    line-height: 1.1;
+    font-size: clamp(1rem, 0.4rem + 12cqw, 2.5rem) !important;
+    word-break: break-word;
+}
+
+.card .metric:not(.counter) {
+    font-size: clamp(1.2rem, 1rem + 10cqw, 2.5rem);
+}
+
+.card .unit {
+    font-size: clamp(0.7rem, 5cqw, 0.95rem);
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-left: 5px;
+}
+
+.card .description {
+    font-size: clamp(0.7rem, 5cqw, 0.95rem);
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #aaa;
+}
+
+.card, .card-inner, .card-front, .card-back {
+    container-type: inline-size;
+    width: 100%;
+}
+
+.chart-bar-container {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 10px;
+    height: 8px;
+    width: 100%;
+}
+
+.chart-bar {
+    height: 100%;
+    border-radius: 4px;
+    position: relative;
+}
+
+.chart-legend {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.divider {
+    margin: 4rem 0 2rem 0;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--accent);
+    border-left: 2px solid var(--text-secondary);
+    padding-left: 1rem;
+}
+
+.ga-disclaimer {
+    font-size: 0.7rem;
+    color: #555;
+    margin-top: 5px;
+    font-style: italic;
+    display: block;
+}
+
+.grid-row-2, .grid-row-3, .grid-row-4, .grid-row-6, .grid-full {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.grid-row-2 { 
+    grid-template-columns: repeat(2, 1fr); 
+}
+
+.grid-row-3 { 
+    grid-template-columns: repeat(3, 1fr); 
+}
+
+.grid-row-4 { 
+    grid-template-columns: repeat(4, 1fr); 
+}
+
+.grid-row-6 { 
+    grid-template-columns: repeat(3, 1fr); 
+}
+
+.grid-full  { 
+    grid-template-columns: 1fr; 
+}
+
+.card.flippable {
+    cursor: pointer;
+    padding: 0; 
+    background: transparent;
+    border: none;
+    perspective: 1000px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.card.flippable.is-flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    padding: 2.5rem;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(10px);
+}
+
+.card-front {
+    position: relative; 
+    z-index: 2;
+}
+
+.card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(180deg);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.card-back h3 {
+    margin-top: 0;
+    color: var(--accent);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.line-chart-container {
+    width: 100%;
+    height: 180px;
+    margin-top: 2rem;
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.chart-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.chart-area-fill {
+    fill: url(#chartGradient);
+    opacity: 0.2;
+}
+
+.chart-line-path {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: drawLine 2.5s ease-out forwards;
+}
+
+@keyframes drawLine {
+    to { stroke-dashoffset: 0; }
+}
+
+.chart-node {
+    fill: var(--bg-color);
+    stroke: var(--accent);
+    stroke-width: 2;
+    --node-r: 4;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.chart-node:hover {
+    --node-r: 6;
+    fill: var(--accent);
+}
+
+.chart-labels-x {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+    margin-top: 10px;
+}
+
+.chart-label-x {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    flex: 1;
+    text-align: center;
+}
+
+.data-missing-note {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    margin-top: 15px;
+    font-style: italic;
+    color: gray;
+}
+
+.chart-node {
+    fill: var(--bg-color);
+    stroke: var(--accent);
+    stroke-width: 2px;
+}
+
+.svg-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    fill: var(--text-secondary);
+    transition: font-size 0.3s ease;
+}
+
+.card.grid-full {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.line-chart-wrapper {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0 5%;
+    height: auto;
+    padding-bottom: 0;
+}
+
+.svg-label, .axis-label {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+    fill: var(--text-secondary);
+    font-weight: 500;
+}
+
+.svg-label { 
+    font-size: 14px;
+}
+
+.axis-label { 
+    font-size: 11px; 
+    opacity: 0.8;
+    fill: var(--text-secondary);
+}
+
+.axis-line {
+    stroke: var(--card-border);
+    stroke-width: 1;
+}
+
+.bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.bar-item {
+    display: grid;
+    grid-template-columns: minmax(64px, auto) minmax(64px, 1fr) minmax(30px, auto);
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.bar-item .label {
+    font-size: 0.7rem;
+    letter-spacing: 1.2px;
+    opacity: 0.85;
+}
+
+.bar {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 6px;
+    margin-top: 4px;
+}
+
+.bar-fill {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.9),
+        rgba(255, 255, 255, 0.55)
+    );
+    border-radius: 999px;
+}
+
+.bar-item .percent {
+    font-size: 0.65rem;
+    text-align: right;
+    opacity: 0.75;
+}
+
+@media (max-width: 1100px) {
+    .grid-row-6 {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    .grid-row-3,
+    .grid-row-4 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .svg-label {
+        font-size: 16px;
+        letter-spacing: 1.2px;
+    }
+
+    .y-axis text {
+        font-size: 14px;
+    }
+
+    .chart-node {
+        --node-r: 5;
+    }
+
+    .chart-line-path {
+        stroke-width: 3.5;
+    }
+}
+
+@media (max-width: 810px) {
+    .bar-item {
+        grid-template-columns: auto 1fr;
+        gap: 6px;
+    }
+
+    .percent {
+        display: none;
+    }
+
+    .label::after {
+        content: attr(data-percent);
+        opacity: 0.7;
+        font-size: 0.65rem;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .grid-row-2,
+    .grid-row-3,
+    .grid-row-4,
+    .grid-row-6 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .line-chart-wrapper {
+        padding: 0 3%;
+        aspect-ratio: auto;
+    }
+
+    .card h2 {
+        font-size: 0.95rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .card h2 span {
+        font-size: 0.7rem !important;
+        margin-left: 0 !important;
+    }
+
+    .svg-label {
+        font-size: 20px;
+        letter-spacing: 1.6px;
+    }
+
+    .y-axis text {
+        font-size: 17px;
+    }
+
+    .chart-node {
+        --node-r: 6;
+    }
+
+    .chart-line-path {
+        stroke-width: 4;
+    }
+}
+
+@container (max-width: 620px) {
+    .line-chart-wrapper {
+        padding: 0 3%;
+    }
+
+    .svg-label {
+        font-size: 21px;
+        letter-spacing: 1.7px;
+    }
+
+    .y-axis text {
+        font-size: 18px;
+    }
+
+    .chart-node {
+        --node-r: 6.5;
+    }
+
+    .chart-line-path {
+        stroke-width: 4.2;
+    }
+}
+
+@media (max-width: 550px) {
+    .grid-row-2 {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .grid-row-3,
+    .grid-row-4,
+    .grid-row-6 {
+        grid-template-columns: 1fr !important;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .line-chart-wrapper {
+        padding: 0 4%;
+    }
+
+    .svg-label {
+        font-size: 22px;
+        letter-spacing: 1.8px;
+    }
+
+    .y-axis text {
+        font-size: 19px;
+    }
+
+    .chart-node {
+        --node-r: 7;
+    }
+
+    .chart-line-path {
+        stroke-width: 4.5;
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--card-border);
+    margin-top: 3rem;
+}
+
+@keyframes fadeUp {
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+h1.title:hover {
+    text-shadow: 2px 0 var(--text-secondary), -2px 0 #fff;
+    transition: 0.2s;
+}
+
+#site-header .glass {
+--glass-bg: rgba(20, 20, 20, 0.70) !important;
+--glass-border: rgba(255, 255, 255, 0.1) !important;
+--glass-highlight: rgba(255, 255, 255, 0.1) !important;
+--nav-hover-bg: rgba(255, 255, 255, 0.1) !important;
+background-color: var(--glass-bg) !important;
+}
+
+#site-header .glass h1 {
+    color: #fff !important;
+}
+
+#site-header .glass nav a {
+    color: #ddd !important;
+}
+
+#site-header .glass nav a:hover {
+    color: #fff !important;
+    background-color: var(--nav-hover-bg) !important;
+}

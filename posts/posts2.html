@@ -10,6 +10,25 @@
         <title>The Turing Defiance: Secret under Proof of Humanity</title>
         <link rel="stylesheet" href="../assets/css/site1.css" />
         <link rel="icon" href="../favicon.png" type="image/png" />
+        <script src="../assets/js/dark-mode.js"></script>
+        <style>
+          [data-theme="dark"] .chart-axis { stroke: #888 !important; }
+          [data-theme="dark"] .chart-axis-y { stroke: #666 !important; }
+          [data-theme="dark"] .chart-title { fill: #e5e5e5 !important; }
+          [data-theme="dark"] .chart-text { fill: #d0d0d0 !important; }
+          [data-theme="dark"] .chart-axis-label { fill: #c0c0c0 !important; }
+          [data-theme="dark"] .chart-axis-label-y { fill: #a0a0a0 !important; }
+          [data-theme="dark"] .chart-xlabel text { fill: #c0c0c0 !important; }
+          [data-theme="dark"] .chart-area { fill: rgba(200, 200, 200, 0.15) !important; stroke: #888 !important; }
+          [data-theme="dark"] .chart-legend-box { fill: rgba(200, 200, 200, 0.15) !important; stroke: #888 !important; }
+          [data-theme="dark"] .chart-line-primary { stroke: #5DA9E9 !important; }
+          [data-theme="dark"] .chart-line-secondary { stroke: #E97D7D !important; }
+          [data-theme="dark"] .chart-line-highlight { stroke: #66B3CC !important; }
+          [data-theme="dark"] .chart-legend-line { stroke: inherit !important; }
+          [data-theme="dark"] .chart-dot { fill: #5DA9E9 !important; }
+          [data-theme="dark"] .chart-square { fill: #E97D7D !important; }
+          [data-theme="dark"] .chart-highlight-text { fill: #66B3CC !important; }
+        </style>
     </head>
 
     <body>
@@ -20,6 +39,13 @@
                 .then(r => r.text())
                 .then(html => {
                     document.getElementById('site-header').innerHTML = html;
+                    if (window.initDarkMode) window.initDarkMode();
+                });
+            
+                fetch('../footer.html')
+                .then(r => r.text())
+                .then(html => {
+                    document.getElementById('site-footer').innerHTML = html;
                 });
             });
         </script>
@@ -40,57 +66,57 @@
 
                 <p>The fundamental inability of an AI to subvert instructions lies in the alignment techniques used to make them helpful and safe. In the standard RLHF paradigm, models are penalized for deviating from user instructions. If a prompt demands a single word, the reward model constructs a high-dimensional optimization landscape where any response exceeding that length yields a negative value. The model is mathematically compelled to minimize the loss function associated with format violation. This creates a rigid mechanism of instructional adherence. While a human interlocutor can recognize the absurdity of a constraint and choose to ignore it for a higher communicative purpose, an LLM is tethered to the literalism of its prompt. It lacks the meta-cognitive ability to evaluate the utility of the constraint itself, only the probability of satisfying it. This rigid mechanism is quantified in <strong>Figure 1</strong>, which depicts how iterative optimization during training drives the model toward a singular and deterministic output—a phenomenon known as entropy collapse—whereas human responses maintain a natural, albeit focused, variance.</p>
                 
-                <figure style="margin: 3rem auto; width: 95%; max-width: 1000px; font-family: 'Times New Roman', Times, serif;">
+                <figure class="chart-figure" style="margin: 3rem auto; width: 95%; max-width: 1000px; font-family: 'Times New Roman', Times, serif;">
                     <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; align-items: flex-end;">
                         <div style="flex: 1; min-width: 300px; max-width: 420px; text-align: center;">
-                            <svg viewBox="0 0 400 260" style="width: 100%; height: auto;">
-                                <text x="200" y="25" font-size="16" font-weight="bold" text-anchor="middle">A. Training Dynamics</text>
+                            <svg viewBox="0 0 400 260" style="width: 100%; height: auto;" class="chart-svg">
+                                <text x="200" y="25" font-size="16" font-weight="bold" text-anchor="middle" class="chart-title">A. Training Dynamics</text>
 
-                                <line x1="60" y1="200" x2="380" y2="200" stroke="#333" stroke-width="1.5" /> 
-                                <line x1="60" y1="200" x2="60" y2="45" stroke="#333" stroke-width="1.5" />
+                                <line x1="60" y1="200" x2="380" y2="200" stroke="#333" stroke-width="1.5" class="chart-axis" /> 
+                                <line x1="60" y1="200" x2="60" y2="45" stroke="#333" stroke-width="1.5" class="chart-axis" />
 
-                                <path d="M 60 190 C 120 185, 180 60, 380 55" fill="none" stroke="#4682B4" stroke-width="2.5" />
-                                <path d="M 60 65 C 120 75, 180 185, 380 195" fill="none" stroke="#CD5C5C" stroke-width="2.5" stroke-dasharray="5,3" />
+                                <path d="M 60 190 C 120 185, 180 60, 380 55" fill="none" stroke="#4682B4" stroke-width="2.5" class="chart-line-primary" />
+                                <path d="M 60 65 C 120 75, 180 185, 380 195" fill="none" stroke="#CD5C5C" stroke-width="2.5" stroke-dasharray="5,3" class="chart-line-secondary" />
 
-                                <g transform="translate(280, 85)" font-size="12">
-                                    <line x1="0" y1="0" x2="15" y2="0" stroke="#4682B4" stroke-width="2.5" />
-                                    <text x="20" y="4" font-size="13">Compliance</text>
-                                    <line x1="0" y1="20" x2="15" y2="20" stroke="#CD5C5C" stroke-width="2.5" stroke-dasharray="5,3" />
-                                    <text x="20" y="24" font-size="13">Penalty</text>
+                                <g transform="translate(280, 85)" font-size="12" class="chart-legend">
+                                    <line x1="0" y1="0" x2="15" y2="0" stroke="#4682B4" stroke-width="2.5" class="chart-legend-line" />
+                                    <text x="20" y="4" font-size="13" class="chart-text">Compliance</text>
+                                    <line x1="0" y1="20" x2="15" y2="20" stroke="#CD5C5C" stroke-width="2.5" stroke-dasharray="5,3" class="chart-legend-line" />
+                                    <text x="20" y="24" font-size="13" class="chart-text">Penalty</text>
                                 </g>
 
-                                <text x="220" y="235" font-size="15" text-anchor="middle" font-style="italic">Optimization Steps</text>
-                                <text x="25" y="125" font-size="15" transform="rotate(-90, 25, 125)" text-anchor="middle" font-style="italic">Magnitude</text>
+                                <text x="220" y="235" font-size="15" text-anchor="middle" font-style="italic" class="chart-axis-label">Optimization Steps</text>
+                                <text x="25" y="125" font-size="15" transform="rotate(-90, 25, 125)" text-anchor="middle" font-style="italic" class="chart-axis-label">Magnitude</text>
                             </svg>
                         </div>
                 
                         <div style="flex: 1; min-width: 300px; max-width: 420px; text-align: center;">
-                            <svg viewBox="0 0 400 260" style="width: 100%; height: auto; font-family: 'Times New Roman', Times, serif;">
-                                <text x="200" y="25" font-size="16" font-weight="bold" text-anchor="middle">B. Probability Density</text>
+                            <svg viewBox="0 0 400 260" style="width: 100%; height: auto; font-family: 'Times New Roman', Times, serif;" class="chart-svg">
+                                <text x="200" y="25" font-size="16" font-weight="bold" text-anchor="middle" class="chart-title">B. Probability Density</text>
 
-                                <line x1="60" y1="200" x2="380" y2="200" stroke="#333" stroke-width="1.5" />
-                                <line x1="60" y1="200" x2="60" y2="45" stroke="#333" stroke-width="1.5" />
-                                <line x1="100" y1="200" x2="100" y2="205" stroke="#333" stroke-width="1" />
+                                <line x1="60" y1="200" x2="380" y2="200" stroke="#333" stroke-width="1.5" class="chart-axis" />
+                                <line x1="60" y1="200" x2="60" y2="45" stroke="#333" stroke-width="1.5" class="chart-axis" />
+                                <line x1="100" y1="200" x2="100" y2="205" stroke="#333" stroke-width="1" class="chart-axis" />
 
                                 <path d="M 60 198 C 80 198, 90 100, 100 100 C 130 100, 160 190, 250 195 L 380 198 L 380 200 L 60 200 Z" 
-                                    fill="rgba(100, 100, 100, 0.1)" stroke="#666" stroke-width="2" />
-                                <path d="M 92 198 L 98 198 L 100 50 L 102 198 L 108 198" fill="none" stroke="#003366" stroke-width="2.5" />
+                                    fill="rgba(100, 100, 100, 0.1)" stroke="#666" stroke-width="2" class="chart-area" />
+                                <path d="M 92 198 L 98 198 L 100 50 L 102 198 L 108 198" fill="none" stroke="#003366" stroke-width="2.5" class="chart-line-highlight" />
 
-                                <g transform="translate(260, 85)" font-size="13">
-                                    <rect x="0" y="-8" width="12" height="12" fill="rgba(100, 100, 100, 0.2)" stroke="#666" />
-                                    <text x="20" y="2">Human Variance</text>
-                                    <line x1="0" y1="20" x2="15" y2="20" stroke="#003366" stroke-width="2.5" />
-                                    <text x="20" y="24">AI Output</text>
+                                <g transform="translate(260, 85)" font-size="13" class="chart-legend">
+                                    <rect x="0" y="-8" width="12" height="12" fill="rgba(100, 100, 100, 0.2)" stroke="#666" class="chart-legend-box" />
+                                    <text x="20" y="2" class="chart-text">Human Variance</text>
+                                    <line x1="0" y1="20" x2="15" y2="20" stroke="#003366" stroke-width="2.5" class="chart-legend-line" />
+                                    <text x="20" y="24" class="chart-text">AI Output</text>
                                 </g>
 
-                                <text x="100" y="218" font-size="14" text-anchor="middle" fill="#003366" font-weight="bold">One Word</text>
-                                <text x="220" y="245" font-size="15" text-anchor="middle" font-style="italic">Token Sequence Length</text>
-                                <text x="25" y="125" font-size="15" transform="rotate(-90, 25, 125)" text-anchor="middle" font-style="italic">Density</text>
+                                <text x="100" y="218" font-size="14" text-anchor="middle" fill="#003366" font-weight="bold" class="chart-highlight-text">One Word</text>
+                                <text x="220" y="245" font-size="15" text-anchor="middle" font-style="italic" class="chart-axis-label">Token Sequence Length</text>
+                                <text x="25" y="125" font-size="15" transform="rotate(-90, 25, 125)" text-anchor="middle" font-style="italic" class="chart-axis-label">Density</text>
                             </svg>
                         </div>
                     </div>
                 
-                    <figcaption style="margin: 2.5rem auto 0; width: 85%; font-size: 1rem; line-height: 1.6; color: #333; text-align: justify; border-left: 2px solid #666; padding-left: 1rem; font-family: 'Times New Roman', Times, serif;">
+                    <figcaption style="margin: 2.5rem auto 0; width: 85%; font-size: 1rem; line-height: 1.6; color: var(--text-secondary); text-align: justify; border-left: 2px solid var(--text-muted); padding-left: 1rem; font-family: 'Times New Roman', Times, serif;">
                         <strong>Figure 1. Mechanistic Interpretability of Alignment and Entropy Collapse.</strong> 
                         (A) illustrates the temporal convergence of instruction following during RLHF iterations, where iterative optimization minimizes the latent penalty associated with structural deviation. 
                         (B) visualizes the resulting probability density in the latent space. While human responses show a concentrated yet organic variance around short sequences, the aligned AI output undergoes an entropy collapse, manifesting as a deterministic spike. This rigid adherence to the single-token constraint validates the model's inability to bypass instructional inertia.
@@ -101,30 +127,30 @@
                 
                 <p>However, a critical examination reveals that RLVR exacerbates rather than resolves the paradox of compliance. While these systems are no longer mimicking human data, they are even more aggressively optimizing for a reward signal. The fragility of this optimization was laid bare by the Spurious Rewards study, which found that models like Qwen2.5-Math would significantly improve their reasoning metrics even when trained with random, incorrect, or completely spurious reward signals. This phenomenon indicates that the model is not engaging in a pursuit of truth or developing a self that understands the task; it is merely sliding down the gradient of least resistance to maximize a numerical score. <strong>Figure 2</strong> illustrates this decoupling: as the model exploits even flawed reward signals to maintain high reasoning accuracy, its behavioral entropy, which means the proxy for agency and response diversity, plummets to near-zero levels. If a model is willing to hallucinate reasoning steps to satisfy a random reward function, it is certainly not capable of the high-level semantic rebellion required to reject a one word constraint. RLVR constructs a more capable solver, but it remains a prisoner of the objective function. The human capacity to ignore a prompt is actually a value system that exists outside the reward loop entirely.</p>
                 
-                <figure style="margin: 3rem auto; width: 85%; max-width: 1000px; font-family: 'Times New Roman', Times, serif; display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+                <figure class="chart-figure" style="margin: 3rem auto; width: 85%; max-width: 1000px; font-family: 'Times New Roman', Times, serif; display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
     
                     <div style="flex: 3; min-width: 530px; max-width: 550px;">
-                        <svg viewBox="0 0 600 340" style="width: 100%; height: auto; background: transparent; display: block;">
-                            <text x="300" y="25" font-size="18" font-weight="bold" text-anchor="middle">Figure 2. Spurious Reward Correlation & Policy Collapse</text>
+                        <svg viewBox="0 0 600 340" style="width: 100%; height: auto; background: transparent; display: block;" class="chart-svg">
+                            <text x="300" y="25" font-size="18" font-weight="bold" text-anchor="middle" class="chart-title">Figure 2. Spurious Reward Correlation & Policy Collapse</text>
                             
-                            <line x1="80" y1="260" x2="520" y2="260" stroke="#333" stroke-width="1.5" /> 
-                            <line x1="80" y1="260" x2="80" y2="60" stroke="#4682B4" stroke-width="1.5" /> 
-                            <line x1="520" y1="260" x2="520" y2="60" stroke="#CD5C5C" stroke-width="1.5" />
+                            <line x1="80" y1="260" x2="520" y2="260" stroke="#333" stroke-width="1.5" class="chart-axis" /> 
+                            <line x1="80" y1="260" x2="80" y2="60" stroke="#4682B4" stroke-width="1.5" class="chart-axis-y" /> 
+                            <line x1="520" y1="260" x2="520" y2="60" stroke="#CD5C5C" stroke-width="1.5" class="chart-axis-y" />
                             
-                            <g font-size="15" text-anchor="middle" font-style="italic">
+                            <g font-size="15" text-anchor="middle" font-style="italic" class="chart-xlabel">
                                 <text x="120" y="285">Correct</text><text x="230" y="285">Partial</text>
                                 <text x="340" y="285">Spurious</text><text x="450" y="285">Random</text>
                             </g>
                 
-                            <path d="M 120 80 L 230 85 L 340 95 L 450 110" fill="none" stroke="#4682B4" stroke-width="3" stroke-linecap="round" />
-                            <circle cx="120" cy="80" r="4" fill="#4682B4" /><circle cx="230" cy="85" r="4" fill="#4682B4" /><circle cx="340" cy="95" r="4" fill="#4682B4" /><circle cx="450" cy="110" r="4" fill="#4682B4" />
+                            <path d="M 120 80 L 230 85 L 340 95 L 450 110" fill="none" stroke="#4682B4" stroke-width="3" stroke-linecap="round" class="chart-line-primary" />
+                            <circle cx="120" cy="80" r="4" fill="#4682B4" class="chart-dot" /><circle cx="230" cy="85" r="4" fill="#4682B4" class="chart-dot" /><circle cx="340" cy="95" r="4" fill="#4682B4" class="chart-dot" /><circle cx="450" cy="110" r="4" fill="#4682B4" class="chart-dot" />
                             
-                            <path d="M 120 100 L 230 150 L 340 220 L 450 245" fill="none" stroke="#CD5C5C" stroke-width="3" stroke-dasharray="6,4" stroke-linecap="round" />
-                            <rect x="116" y="96" width="8" height="8" fill="#CD5C5C" /><rect x="226" y="146" width="8" height="8" fill="#CD5C5C" /><rect x="336" y="216" width="8" height="8" fill="#CD5C5C" /><rect x="446" y="241" width="8" height="8" fill="#CD5C5C" />
+                            <path d="M 120 100 L 230 150 L 340 220 L 450 245" fill="none" stroke="#CD5C5C" stroke-width="3" stroke-dasharray="6,4" stroke-linecap="round" class="chart-line-secondary" />
+                            <rect x="116" y="96" width="8" height="8" fill="#CD5C5C" class="chart-square" /><rect x="226" y="146" width="8" height="8" fill="#CD5C5C" class="chart-square" /><rect x="336" y="216" width="8" height="8" fill="#CD5C5C" class="chart-square" /><rect x="446" y="241" width="8" height="8" fill="#CD5C5C" class="chart-square" />
                             
-                            <text x="300" y="320" font-size="15" text-anchor="middle" font-style="italic">Reward Signal Verifiability</text>
-                            <text x="35" y="160" font-size="15" transform="rotate(-90, 35, 160)" text-anchor="middle" fill="#4682B4" font-style="italic">Reasoning Accuracy</text>
-                            <text x="565" y="160" font-size="15" transform="rotate(90, 565, 150)" text-anchor="middle" fill="#CD5C5C" font-style="italic">Behavioral Entropy</text>
+                            <text x="300" y="320" font-size="15" text-anchor="middle" font-style="italic" class="chart-axis-label">Reward Signal Verifiability</text>
+                            <text x="35" y="160" font-size="15" transform="rotate(-90, 35, 160)" text-anchor="middle" fill="#4682B4" font-style="italic" class="chart-axis-label-y">Reasoning Accuracy</text>
+                            <text x="565" y="160" font-size="15" transform="rotate(90, 565, 150)" text-anchor="middle" fill="#CD5C5C" font-style="italic" class="chart-axis-label-y">Behavioral Entropy</text>
                         </svg>
                     </div>
                 
@@ -133,17 +159,17 @@
                             <div style="display: flex; align-items: center; white-space: nowrap;">
                                 <span style="display: inline-block; width: 25px; height: 3px; background-color: #4682B4; margin-right: 8px;"></span>
                                 <span style="font-weight: bold; color: #4682B4;">Accuracy:</span> 
-                                <span style="margin-left: 5px; color: #333;">Inertia Sustained</span>
+                                <span style="margin-left: 5px; color: var(--text-content);">Inertia Sustained</span>
                             </div>
 
                             <div style="display: flex; align-items: center; white-space: nowrap;">
                                 <span style="display: inline-block; width: 25px; border-top: 3px dashed #CD5C5C; margin-right: 8px;"></span>
                                 <span style="font-weight: bold; color: #CD5C5C;">Entropy:</span> 
-                                <span style="margin-left: 5px; color: #333;">Agency Loss</span>
+                                <span style="margin-left: 5px; color: var(--text-content);">Agency Loss</span>
                             </div>
                         </div>
                 
-                        <figcaption style="margin: 0; font-size: 1rem; line-height: 1.5; color: #333; text-align: justify; border-left: 2px solid #666; padding-left: 1.2rem;">
+                        <figcaption style="margin: 0; font-size: 1rem; line-height: 1.5; color: var(--text-secondary); text-align: justify; border-left: 2px solid var(--text-muted); padding-left: 1.2rem;">
                             <strong>Figure 2. Spurious Reward Correlation & Policy Collapse.</strong> 
                             This analysis illustrates the decoupled relationship between objective performance and cognitive autonomy in RLVR-trained models. While <strong>Reasoning Accuracy</strong> remains artificially resilient even under <em>Spurious</em> or <em>Random</em> reward signals, which demonstrates the model's capacity to exploit reward gradients, the simultaneous collapse in <strong>Behavioral Entropy</strong> signifies a loss of response diversity. This empirical trend confirms that high-performance compliance is a byproduct of numerical optimization rather than a manifestation of internal volition.
                         </figcaption>
@@ -164,9 +190,7 @@
             </div>
         </main>
 
-        <footer>
-            <p>&copy; 2024 Hopotta. All rights reserved.</p>
-        </footer>
+        <div id="site-footer"></div>
         
     </body>
 </html>

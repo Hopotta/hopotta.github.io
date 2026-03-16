@@ -12,6 +12,7 @@
   <link rel="icon" href="../favicon.png" type="image/png" />
   <link rel="stylesheet" href="../assets/css/site1.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <script src="../assets/js/dark-mode.js"></script>
 </head>
 
 <body>
@@ -22,6 +23,13 @@
         .then(r => r.text())
         .then(html => {
           document.getElementById('site-header').innerHTML = html;
+          if (window.initDarkMode) window.initDarkMode();
+        });
+      
+      fetch('../footer.html')
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById('site-footer').innerHTML = html;
         });
     });
   </script>
@@ -30,21 +38,10 @@
     <div class="article-container">
       <h1 class="article-title" style="font-family: 'Merriweather';">Reevaluating Stereotypes: Functional Roles and the Perils of Over-Criticism in Digital Environments</h1>
 
-      <div class="article-info" aria-label="Article metadata">
-        <span class="meta-item" title="Publication date">
-          <span class="meta-icon" aria-hidden></span>
-          <span>Sept 20, 2025</span>
-        </span>
-
-        <span class="meta-item" title="Estimated reading time">
-          <span class="meta-icon" aria-hidden></span>
-          <span>25 min</span>
-        </span>
-
-        <span class="meta-item" title="Author">
-          <span class="meta-icon" aria-hidden></span>
-          <span>Hopotta</span>
-        </span>
+      <div class="article-info">
+        <span class="meta-item">Date: December 24, 2025</span>
+        <span class="meta-item">Estimated Reading Time: 10 min</span>
+        <span class="meta-item">Author: Hopotta</span>
       </div>
 
       <div class="article-content">
@@ -140,8 +137,6 @@
     </div>
   </main>
 
-  <footer>
-    <p>&copy; 2024 Hopotta. All rights reserved.</p>
-  </footer>
+  <div id="site-footer"></div>
 </body>
 </html>

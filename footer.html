@@ -1,0 +1,79 @@
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2024 Hopotta. All rights reserved.</p>
+    <a href="/report/AnnualReport2025/index.html" class="report-link">
+      <span>📊</span> Annual Report 2025
+    </a>
+  </div>
+</footer>
+
+<style>
+  :root {
+    --footer-bg: #f9f9f9;
+    --footer-text: #666;
+    --footer-link: #888;
+    --footer-link-hover: #444;
+  }
+
+  [data-theme="dark"] {
+    --footer-bg: #252525;
+    --footer-text: #a0a0a0;
+    --footer-link: #888;
+    --footer-link-hover: #c0c0c0;
+  }
+
+  #site-footer {
+    margin-top: auto;
+  }
+
+  #site-footer {
+    margin-top: auto;
+  }
+
+  footer {
+    background-color: var(--footer-bg);
+    text-align: center;
+    padding: 1.5rem 1rem;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--footer-text);
+  }
+
+  .report-link {
+    text-decoration: none;
+    color: var(--footer-link);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .report-link:hover {
+    color: var(--footer-link-hover);
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  [data-theme="dark"] .report-link:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .report-link span {
+    font-size: 1rem;
+  }
+</style>

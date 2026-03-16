@@ -10,6 +10,7 @@
   <title>The Anchoring Trap in Large Language Models: Why they Struggle with Incorrect Answers while they Never Realize</title>
   <link rel="stylesheet" href="../assets/css/site1.css" />
   <link rel="icon" href="../favicon.png" type="image/png" />
+  <script src="../assets/js/dark-mode.js"></script>
   <script>
     window.MathJax = {
       tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
@@ -27,6 +28,13 @@
         .then(r => r.text())
         .then(html => {
           document.getElementById('site-header').innerHTML = html;
+          if (window.initDarkMode) window.initDarkMode();
+        });
+      
+      fetch('../footer.html')
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById('site-footer').innerHTML = html;
         });
     });
   </script>
@@ -78,6 +86,17 @@
     font-family: 'Crimson Pro', Helvetica, sans-serif;
   }
 
+  [data-theme="dark"] .branch .q-bubble {
+    background: rgba(255,255,255,0.08);
+    color: #e5e5e5;
+  }
+
+  [data-theme="dark"] .branch .a-bubble {
+    background: #2a2a2a;
+    color: #e5e5e5;
+    border-color: rgba(255,255,255,0.1);
+  }
+
   .branch.left .q-bubble { max-width: 78%; }
   .branch.left .a-bubble { max-width: 78%; }
   .branch.right .q-bubble { max-width: 84%; }
@@ -96,9 +115,22 @@
       color: #666;
   }
 
+  [data-theme="dark"] details[open] > .a-bubble,
+  [data-theme="dark"] details .a-bubble {
+      color: #999;
+  }
+
+  [data-theme="dark"] details .a-bubble {
+      color: #888;
+  }
+
   .a-bubble:not(details .a-bubble) {
       font-size: inherit;
       color: #0f172a;
+  }
+
+  [data-theme="dark"] .a-bubble:not(details .a-bubble) {
+      color: #e5e5e5;
   }
 
   @media (max-width: 780px) {
@@ -156,7 +188,7 @@
                               <div class="text-p1 [&amp;_p]:mb-xs prose message-text max-w-full [overflow-wrap:break-word] [&amp;_ol]:list-inside last:[&amp;_p]:mb-0">
                                 <details>
                                   <summary class="mb-sm last:mb-0" style="cursor: pointer; font-family: Helvetica; color: #666">Thought for 94 seconds</summary>
-                                  <p class="mb-sm last:mb-0 a-bubble" aria-label="GPT answer branch left" style="background: #ffffff;">
+                                  <p class="mb-sm last:mb-0 a-bubble" aria-label="GPT answer branch left">
                                     First, the problem is to calculate the determinant of a 2x2 matrix. The matrix is:<br>
                                     \(\begin{pmatrix} 5 & 3 \\ 2 & 6 \end{pmatrix}\)<br>
                                     The formula for the determinant of a 2x2 matrix \(\begin{pmatrix} a & b \\ c & d \end{pmatrix}\) is \(ad - bc\).<br>
@@ -256,8 +288,6 @@
     </div>
   </main>
 
-  <footer>
-    <p>&copy; 2024 Hopotta. All rights reserved.</p>
-  </footer>
+  <div id="site-footer"></div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 # Website Maintenance Log  
 **Maintainer:** Hopotta  
-**Date:** March 16, 2026  
-**Version:** 1.6.0  
+**Date:** March 17, 2026  
+**Version:** 1.6.1  
 
 ## 1. Dark Mode Implementation  
 - **Global Dark Mode Support**: Introduced a site-wide dark mode feature with a sun/moon toggle button positioned in the header next to "Hopotta's Log".  
@@ -24,15 +24,20 @@
 - **Chart SVG Optimization**: Added dark mode CSS classes to all chart elements (axes, titles, labels, lines, data points) with optimized color values for improved readability in dark theme—brighter lines (#5DA9E9, #E97D7D) and lighter text (#e5e5e5, #c0c0c0).  
 - **perspective2.html Bubble Fix**: Removed inline `background: #ffffff` style from dialogue bubbles and refined collapsed text colors to maintain visual hierarchy (#999/#888 for collapsed vs #e5e5e5 for body text in dark mode).  
 
-## 5. Files Modified  
-- **New Files**: `assets/js/dark-mode.js`, `footer.html`  
-- **Updated Files**: `header.html`, `index.html`, `perspective/index.html`, `paradox/index.html`, `posts/posts1.html`, `posts/posts2.html`, `perspective/perspective1.html`, `perspective/perspective2.html`, `paradox/paradox1.html`, `assets/css/site1.css`  
+## 5. Theme Toggle SVG Animation Enhancement  
+- **Smooth Sun-Moon Transition Animation**: Implemented fluid 600ms animation for theme switching using `requestAnimationFrame` for 60fps performance.
+  - **Sun → Moon**: Sun rays fade out (0-300ms) → Sun center circle shrinks and fades (0-360ms) → Moon crescent fades in (240-600ms)
+  - **Moon → Sun**: Moon fades out (0-360ms) → Sun center circle expands and fades in (240-600ms) → Sun rays fade in (300-600ms)
+- **Simplified SVG Design**: Removed complex multi-moon elements, using original clean sun (circle + 8 rays) and moon crescent path design.
+- **Hover Color Optimization**: Fixed light mode hover state—icon now highlights to darker black (#000) instead of white (#fff) for better visibility on light background. Dark mode hover remains white (#fff).
+- **Animation States**: Added CSS classes (`.sun-mode`, `.moon-mode`, `.animating`) for precise animation control and state management.
+- **Click Prevention**: Disabled button clicks during animation to prevent state conflicts.
 
 ---
 
 ## Next Steps  
 - Populate the `paradox` section with additional content.  
-- Explore adding system preference detection (`prefers-color-scheme`) as default theme source.  
+- ~~Explore adding system preference detection (`prefers-color-scheme`) as default theme source.~~ (Implemented in dark-mode.js)
 - Consider implementing skeleton loading states for dynamically fetched components.  
 - Explore using templating engines (like Jekyll) if site complexity increases.  
 

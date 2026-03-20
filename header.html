@@ -4,10 +4,8 @@
       <h1>Hopotta's Log</h1>
       <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
         <svg id="theme-toggle-icon" viewBox="0 0 24 24" width="22" height="22">
-          <!-- 太阳 - 中心圆 -->
           <circle class="sun-circle" cx="12" cy="12" r="5" fill="currentColor" style="opacity: 1; transform: scale(1); transform-origin: center;"/>
           
-          <!-- 太阳 - 8 个光芒 -->
           <g class="sun-rays" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="opacity: 1;">
             <line x1="12" y1="1" x2="12" y2="3"/>
             <line x1="12" y1="21" x2="12" y2="23"/>
@@ -19,7 +17,6 @@
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
           </g>
           
-          <!-- 月亮 -->
           <g class="moon" style="opacity: 0;">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
           </g>
@@ -139,7 +136,6 @@
     overflow: visible;
   }
 
-  /* 动画元素过渡 */
   .sun-rays {
     transition: opacity 0.3s ease-out;
   }
@@ -153,7 +149,6 @@
     transition: opacity 0.3s ease-out;
   }
 
-  /* 动画期间使用线性过渡 */
   .theme-toggle.animating .sun-rays {
     transition: opacity 0.3s linear;
   }
@@ -166,7 +161,6 @@
     transition: opacity 0.3s linear;
   }
 
-  /* 太阳状态 */
   .theme-toggle.sun-mode .sun-rays {
     opacity: 1;
   }
@@ -180,7 +174,6 @@
     opacity: 0;
   }
 
-  /* 月亮状态 */
   .theme-toggle.moon-mode .sun-rays {
     opacity: 0;
   }

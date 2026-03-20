@@ -1,9 +1,9 @@
 # Website Maintenance Log  
 **Maintainer:** Hopotta  
-**Date:** March 17, 2026  
-**Version:** 1.6.1  
+**Date:** March 20, 2026  
+**Version:** 1.6.0  
 
-## 1. Dark Mode Implementation  
+## 1. Major Update: Dark Mode Implementation  
 - **Global Dark Mode Support**: Introduced a site-wide dark mode feature with a sun/moon toggle button positioned in the header next to "Hopotta's Log".  
 - **SVG Icon Animation**: Designed elegant sun and moon SVG icons with smooth 30-degree rotation animation on hover for polished interaction feedback.  
 - **Theme Persistence**: Implemented localStorage-based preference saving to maintain user theme selection across sessions.  

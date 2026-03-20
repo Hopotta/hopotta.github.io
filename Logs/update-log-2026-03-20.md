@@ -37,7 +37,6 @@
 
 ## Next Steps  
 - Populate the `paradox` section with additional content.  
-- ~~Explore adding system preference detection (`prefers-color-scheme`) as default theme source.~~ (Implemented in dark-mode.js)
 - Consider implementing skeleton loading states for dynamically fetched components.  
 - Explore using templating engines (like Jekyll) if site complexity increases.  
 
